@@ -11,62 +11,73 @@ The logo, colours and design tokens shared by zirkumflex-group projects: a start
 
 ## The group and its products
 
-- **The mark** (the circumflex as a folded ribbon) and **the indigo** belong to Zirkumflex. Use them unchanged, with the name, for the group itself.
-- **A badge** is a product's app icon: a picture with the mark in it, or the mark over the product's letter. Flexspeak, the first product, wears the group's indigo.
+- **The mark** (the circumflex as a folded ribbon) and **the indigo** belong to Zirkumflex. Use them unchanged, with the name, for the group itself. Flexspeak, the first product, wears the plain mark on its round badge.
+- **One palette.** Every product uses `tokens.css` as it is: the same neutrals, the same accent, the same status colours, in both modes. No product hue, no per-item colours on controls.
+- **Its own icon.** What sets a product apart is a picture of what it is for, drawn in the group's indigo with the caret printed on it in the ribbon's pale colours.
 
 ## A new product
 
-A separate website or app gets an icon of its own, in the group's colours. In order of preference: a picture of what the product is for with the caret in it, the product's letter under the caret until a picture fits, and a colour of its own on top when the product has its own standing. From a checkout of this repo:
+A separate website or app gets an icon drawn for it. From a checkout of this repo:
 
 ```sh
-# A picture: a built-in one by name (so far: file), or the product's own drawing.
+# A built-in picture by name (so far: file, speaker), or the product's own drawing.
 node scripts/product.mjs --name "Files" --picture file --out ../files/brand
 node scripts/product.mjs --name "Product" --picture drawing.svg --out ../product/brand
-# No picture yet: the product's letter under the caret.
+# No picture yet: the product's letter under the caret, on the indigo tile.
 node scripts/product.mjs --name "Docs" --letter D --out ../docs/brand
-# Its own colour: icons in that hue, and the palette to match.
-node scripts/product.mjs --name "Product" --hue 350 --out ../product/brand
-# A colour with a picture or letter, taking the hue of a colour you already have, and adding the outlined lockup:
-bun scripts/product.mjs --name "Product" --letter P --colour "#b0266a" --font path/to/Inter.ttf --out ../product/brand
+# Add the outlined lockup:
+bun scripts/product.mjs --name "Product" --picture drawing.svg --font path/to/Inter.ttf --out ../product/brand
 ```
 
 Drawing a picture:
 
-- One object the product is for (a file for a place that keeps files), centred.
-- The caret is in the picture: printed on the object, or doing a job in it (a roof, an arrow, a fold). It keeps its shape and slant. A picture set beside the caret is two icons, each half the size; merge them.
-- The object takes the ribbon's pale colours, the caret on it the badge's deep ones.
-- The file is an SVG with `viewBox="0 0 64 64"`, without a background, drawn within 30 units of the centre with no part thinner than 4. Use the group's logo colours from `tokens.json`; the tool swaps them for the product's when it has a hue. `fill="url(#front)"` gives the front ribbon's gradient. Run the tool with `--picture file` to see a finished one.
-- Judge it at 16 px beside its siblings (the identity page's tab strip does this). If it blurs or two look alike, simplify.
-- A picture that doesn't fit is worse than a letter. Ship the letter and swap it later.
+- One object the product is for (a file for a place that keeps files, a speaker for one that plays music), centred.
+- The caret is on the object: printed on it, or doing a job in it (a roof, an arrow, a fold). It keeps its shape and slant. A picture set beside the caret is two icons, each half the size; merge them.
+- Deep object, pale caret. The object is the badge's indigo, the caret the ribbon's pale front and back; details on the object (a folded corner) take the ribbon's shade.
+- The object is the icon: no square or circle behind it. Launchers and tab strips draw their own, so a tile of its own shows as a tile inside a tile.
+- The file is an SVG with `viewBox="0 0 64 64"`, drawn inside the circle that touches the square's edges, with no part thinner than 4. Paint it by role, with no gradients or CSS of its own:
 
-The letter (A to Z or a digit) sits under the caret, the way a circumflex sits over a letter; the caret and the colours stay the group's. Two sites with the same letter take a digit, another letter of the name, or a colour. The tool refuses to write the plain caret on indigo: that is the group's, and Flexspeak's as the first product.
+  | Part | Paint |
+  | --- | --- |
+  | The object | `url(#body)`, or the flat `badge-mid` (`#2a2585`) |
+  | The caret's front leg | `url(#front)`, or the flat `ribbon-front` (`#c3cdff`) |
+  | The caret's back leg | `ribbon-back` (`#9fb2ff`) |
+  | Folds and details | `ribbon-shade` (`#6575f0`) |
 
-It writes `badge.svg`, `tile.svg` and `maskable.svg`, plus the lockups when `--font` is given. With a hue it also writes `product.css` and fails if the accent misses a contrast floor. Panels keep the default palette's luminance, so every other floor carries over. Import `product.css` after `tokens.css`. The [identity page](https://zirkumflex-group.github.io/brand/#yours) does the same live.
+  The tool fills in the gradients, and turns the picture round for the full-bleed versions: a pale object and a deep caret on the indigo. Run it with `--picture file` to see a finished one, or open a drawing on the [identity page](https://zirkumflex-group.github.io/brand/#yours).
+- Judge it at 16 px beside its siblings, on light and dark (the identity page's tab strips do this). If it blurs or two look alike, simplify.
+
+Until a picture fits, the product's letter (A to Z or a digit) sits under the caret on the indigo tile, the way a circumflex sits over a letter. It is a placeholder: it says nothing about the product, so swap it for a picture when one fits. The tool refuses to write the plain caret on indigo: that is the group's, and Flexspeak's.
+
+It writes `icon.svg` and `maskable.svg`, plus the lockups when `--font` is given. A drawing of your own sits in the lockup as if it fills the 64-unit square, so draw it edge to edge. The palette is the group's, so there is no CSS to write.
 
 | | Rule |
 | --- | --- |
-| Keep | The mark's shape (a pale ribbon on a deep colour), what the status colours mean, the contrast floors, Inter for interface text |
-| Every product changes | Its icon: a picture with the caret in it, or its letter under the caret. Its lockup (its badge with its name). The plain caret on indigo is for the group's own pages, never a product's icon |
-| Change if it helps | The colour of its icon, and with it the accent and panels; a display face; radius and density |
+| Keep | The palette, accent included, in both modes; the indigo and the caret in every icon; what the status colours mean; the contrast floors; Inter for interface text |
+| Every product changes | Its icon: a picture of what it is for, with the caret on it. Its lockup (its icon with its name). The plain caret on indigo is for the group's own pages, never a product's icon |
+| Change if it helps | A display face for the product's name and top heading; radius and density |
 
 Things to check in a product:
 
-- Its favicon and header icon are its own tile, not `logo/tile.svg` from this repo.
+- `tokens.css` is imported unchanged (or vendored with the commit it came from), and the product's own colour names map onto it. No product hue.
+- Its favicon and header icon are its own `icon.svg`, not `logo/tile.svg` from this repo, and on no ground.
 - The accent fills one main action per view and marks selection and focus. Labels that repeat down a list are `muted`; a second button is a plain one.
+- One accent on every control. An item's own colour (a track, a user) may tint its artwork, never a button, a slider or a progress bar.
 - Green, amber and red appear only as status. Decorative icons use text colours or `chart-*`.
 - A display face sets the product's name and the top heading only. Section headings, buttons and data stay in Inter.
-- The icon is one picture with the caret in it, or the caret over one letter or digit. Never a picture beside the caret.
-- If the hue sits next to a status colour (the tool says so), use it for the badge and keep the default accent.
+- `theme-color` and the manifest's colours are `canvas`, per mode where the platform allows it.
+- Icon links carry a version (`?v=` and a hash of the icon files), so installed apps and caches pick up a new drawing.
 
 Icon files by place:
 
 | Place | File | Mind |
 | --- | --- | --- |
-| Browser tab | `tile.svg` as the favicon | Has to hold at 16 px |
-| Installed web app | PNGs from `tile.svg` (such as 192 and 512 px) and one from `maskable.svg` | Only the centre circle, 80% of the width, is safe; use that file for `"purpose": "maskable"` alone |
-| Windows app | `.ico` from `badge.svg` | At least 16, 24, 32, 48 and 256 px |
-| macOS app | A layered icon, as in `logo/flexspeak-macos.icon` | Ribbon legs as separate layers |
+| Browser tab | `icon.svg` as the favicon | Has to hold at 16 px, on light and dark |
 | Beside the name | `lockup.svg`, or its `-white` / `-ink` file | Don't rebuild it from live text |
+| Installed web app | 192 and 512 px PNGs from `icon.svg`, one from `maskable.svg` | The `icon.svg` PNGs keep their transparency, for `"purpose": "any"`. The maskable one is cropped to the platform's shape; use it for `"purpose": "maskable"` alone |
+| iPhone home screen | A 180 px `apple-touch-icon.png` from `maskable.svg` | iOS fills transparency with black, so this one needs the indigo ground |
+| Windows app | `.ico` from `icon.svg` | At least 16, 24, 32, 48 and 256 px |
+| macOS app | A layered icon, as in `logo/flexspeak-macos.icon` | The object and the caret's legs as separate layers |
 
 ## What's in it
 
@@ -83,6 +94,7 @@ Icon files by place:
 | `logo/flexspeak.svg`, `flexspeak.ico` | Flexspeak's round badge |
 | `logo/lockup-flexspeak.svg` | Flexspeak's badge and name, outlined; `-white` and `-ink` as above |
 | `logo/flexspeak-macos.icon/` | Flexspeak's layered macOS app icon |
+| `scripts/product.mjs`, `scripts/icons.js` | The product icon tool and the recipe and pictures it draws with |
 | `index.html` | The identity page, built from `tokens.css` |
 
 ## Use it
@@ -115,7 +127,7 @@ Defaults, not laws. Bend them where a project's medium needs it, and keep the fa
 - Structure before boxes. Space, a heading or a hairline first; a card when something really stands alone; shadows for things that float.
 - Calm by default. Short, plain labels. Pick the density that suits the medium.
 - Honest state. Stale or unknown data never looks healthy.
-- Make it yours. Every product has its own icon, a picture with the caret in it or its letter; the accent, a display face, radius and density are its to change. Keep the mark and what the status colours mean.
+- Make it yours. Every product has its own icon: a picture of what it is for, in the group's indigo with the caret on it. The palette is everyone's; a display face, radius and density are a product's to change.
 
 The defaults: Inter for interface text, radius 10 for cards and 6 for controls, 28 px controls on a desktop.
 
@@ -138,9 +150,9 @@ The defaults: Inter for interface text, radius 10 for cards and 6 for controls, 
 1. Edit `tokens.json` (or a file in `logo/`).
 2. `node scripts/build.mjs` regenerates `tokens.css` and `shadcn.css`.
 3. `bun run check` confirms the generated files are current, the contrast floors hold, and the logos use only token colours. CI runs the same check.
-4. Tell the projects. Flexspeak's `src/ui/theme.rs` copies the default palette, so update it to match.
+4. Tell the projects. Every product uses the palette as it is, so each one catches up; Flexspeak's `src/ui/theme.rs` copies the default palette, so update it to match.
 
-The lockups are outlined from Inter by `scripts/lockup.mjs`; rerun it if the mark or the lettering changes. `scripts/derive.js` holds the icon geometry and the hue-to-palette recipe that both `scripts/product.mjs` and the identity page use, so change them in one place. The letters in `scripts/glyphs.js` are outlined from Inter by `scripts/glyphs.mjs`.
+The lockups are outlined from Inter by `scripts/lockup.mjs`; rerun it if the mark or the lettering changes. `scripts/icons.js` holds the product icon recipe and the built-in pictures that `scripts/product.mjs`, `scripts/check.mjs` and the identity page all use, so change them in one place. The letters in `scripts/glyphs.js` are outlined from Inter by `scripts/glyphs.mjs`.
 
 ## Licence
 

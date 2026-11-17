@@ -1,10 +1,12 @@
 // Checks that tokens.json keeps its promises:
 //   1. every text and status colour meets its contrast floor on the surfaces it is drawn on;
-//   2. the logo SVGs use only the colours tokens.json names.
+//   2. the logo SVGs, and the product icons scripts/icons.js draws, use only the colours tokens.json names.
 //   node scripts/check.mjs
 import { readFileSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import "./icons.js";
+import "./glyphs.js";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const t = JSON.parse(readFileSync(join(root, "tokens.json"), "utf8"));
@@ -76,14 +78,22 @@ const walk = (dir) => {
   }
 };
 walk(join(root, "logo"));
-for (const p of svgs) {
-  const name = p.slice(root.length + 1).replace(/\\/g, "/");
-  const src = readFileSync(p, "utf8");
+const colours = (name, src) => {
   if (/<style|style="/.test(src)) failures.push(`${name} uses CSS; set colours as fill, stroke or stop-color attributes`);
   for (const [, attr, value] of src.matchAll(/\b(fill|stroke|stop-color|color)="([^"]*)"/g)) {
     const v = value.trim();
     if (v === "none" || v === "currentColor" || /^url\(#[\w-]+\)$/.test(v)) continue;
     if (!allowed.has(v.toLowerCase())) failures.push(`${name} has ${attr}="${v}", which isn't a colour tokens.json names`);
+  }
+};
+for (const p of svgs) colours(p.slice(root.length + 1).replace(/\\/g, "/"), readFileSync(p, "utf8"));
+// Every built-in picture, and a letter, in both kinds of product icon.
+const icons = [...Object.keys(zxIcons.pictures).map((picture) => [picture, { picture }]), ["letter F", "F"]];
+for (const [label, what] of icons) {
+  for (const kind of ["icon", "maskable"]) {
+    const src = zxIcons.icon(kind, t.logo, what);
+    colours(`the ${label} ${kind}`, src);
+    if (/\{\w+\}/.test(src)) failures.push(`the ${label} ${kind} has an unfilled role: ${src.match(/\{\w+\}/)[0]}`);
   }
 }
 const badge = readFileSync(join(root, "logo", "flexspeak.svg"), "utf8").toLowerCase();
@@ -96,4 +106,4 @@ if (failures.length) {
   console.error(`${failures.length} problem(s).`);
   process.exit(1);
 }
-console.log(`Contrast holds (${checked} pairs) and ${svgs.length} logo files use only token colours.`);
+console.log(`Contrast holds (${checked} pairs); ${svgs.length} logo files and ${icons.length * 2} product icons use only token colours.`);

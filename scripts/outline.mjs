@@ -25,22 +25,23 @@ export function outliner(fontPath) {
   return { text, cap: font.capHeight * k };
 }
 
-// A badge SVG's contents, ready to nest inside a lockup: ids prefixed so they can't clash.
-export const badgeBody = (svg) =>
-  svg.replace(/<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "").replace(/\s*<!--[^>]*-->/g, "")
-    .replace(/id="(\w+)"/g, 'id="fx-$1"').replace(/url\(#(\w+)\)/g, "url(#fx-$1)").trim();
+// An icon SVG's contents, ready to nest inside a lockup: ids prefixed so they can't clash.
+export const iconBody = (svg) =>
+  svg.replace(/<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "").replace(/\s*<!--[^>]*-->/g, "").replace(/\s*<title>[^<]*<\/title>/g, "")
+    .replace(/id="([\w-]+)"/g, 'id="fx-$1"').replace(/url\(#([\w-]+)\)/g, "url(#fx-$1)").trim();
 
-// The badge, centred on the cap height, then the name in currentColor.
-export function badgeLockup({ text, cap }, badgeSvg, name, comment) {
+// The icon, centred on the cap height, then the name in currentColor. bounds is the part of the
+// icon's 64-unit box the drawing covers; it is scaled until that part is the lockup's height.
+// Flexspeak's round badge covers 3..61.
+export function iconLockup({ text, cap }, iconSvg, name, comment, [x0, y0, x1, y1] = [3, 3, 61, 61]) {
   const d = 1.4 * F, baseline = (d - cap) / 2 + cap, gap = 0.32 * F;
-  // The badge disc is 29/32 of its box (r=464 of 1024), so scale the box until the disc is d across.
-  const box = d * 32 / 29, off = -(box - d) / 2, view = badgeSvg.match(/viewBox="([^"]+)"/)[1];
-  const t = text(name, d + gap, baseline);
+  const k = d / (y1 - y0), box = 64 * k, view = iconSvg.match(/viewBox="([^"]+)"/)[1];
+  const t = text(name, (x1 - x0) * k + gap, baseline);
   const w = Math.ceil(t.right), h = Math.ceil(d);
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <!-- ${comment} -->
-  <svg x="${r(off)}" y="${r(off)}" width="${r(box)}" height="${r(box)}" viewBox="${view}">
-  ${badgeBody(badgeSvg).replace(/\n  /g, "\n    ")}
+  <svg x="${r(-x0 * k)}" y="${r(-y0 * k)}" width="${r(box)}" height="${r(box)}" viewBox="${view}">
+  ${iconBody(iconSvg).replace(/\n  /g, "\n    ")}
   </svg>
   <path d="${t.d}" fill="currentColor"/>
 </svg>
