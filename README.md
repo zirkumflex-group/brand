@@ -2,7 +2,7 @@
 
 <img src="logo/flexspeak.svg" width="96" alt="Flexspeak logo">
 
-The logo, colours and design tokens shared by zirkumflex-group projects. Flexspeak is the reference product: everything here comes from its default theme (`src/ui/theme.rs` in [zirkumflex-group/flexspeak](https://github.com/zirkumflex-group/flexspeak)).
+The logo, colours and design tokens shared by zirkumflex-group projects: a starting point, not a rulebook. They were first worked out in Flexspeak, and the default palette still matches its default theme (`src/ui/theme.rs` in [zirkumflex-group/flexspeak](https://github.com/zirkumflex-group/flexspeak)).
 
 **See it:** https://zirkumflex-group.github.io/brand/
 
@@ -42,13 +42,17 @@ Swift, Rust and scripts read `tokens.json`. Agents in other repos can read any f
 gh api repos/zirkumflex-group/brand/contents/tokens.json -H "Accept: application/vnd.github.raw"
 ```
 
-## Rules
+## Principles
 
-- Colour means state. Accent for the default action, focus, selection and where you are; green, amber and red only for health; one red.
-- Panels and hairlines before boxes. No drop shadows on content.
-- Inter for interface text. A product may add one display face for headlines.
-- Radius 10 for cards, 6 for controls. Controls 28 px high.
-- A product may choose its own accent and tint the neutrals toward it. It keeps the surfaces, type, radius and status colours.
+Defaults, not laws. Bend them where a project's medium needs it, and keep the family resemblance.
+
+- Colour carries meaning. The accent marks the main action, focus and selection; green, amber and red are for status, not decoration.
+- Structure before boxes. Space, a heading or a hairline first; a card when something really stands alone; shadows for things that float.
+- Calm by default. Short, plain labels. Pick the density that suits the medium.
+- Honest state. Stale or unknown data never looks healthy.
+- Make it yours. A project can choose its own accent and tint the neutrals toward it, add a display face, or change radius and density. Keep the mark and what the status colours mean.
+
+The defaults: Inter for interface text, radius 10 for cards and 6 for controls, 28 px controls on a desktop.
 
 ## Changing it
 

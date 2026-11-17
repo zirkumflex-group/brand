@@ -1,227 +1,357 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="system">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  // Before first paint: ?theme=light|dark wins, then a saved choice, else follow the system.
+  try {
+    const q = new URLSearchParams(location.search).get("theme");
+    const t = q === "light" || q === "dark" ? q : localStorage.getItem("zx-theme");
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch {}
+</script>
 <title>Zirkumflex Brand</title>
-<meta name="description" content="Zirkumflex logo, colours and design tokens, taken from Flexspeak.">
+<meta name="description" content="Zirkumflex logo, colours and design tokens: a shared starting point for every project.">
 <link rel="icon" href="logo/tile.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;560;600;620;650&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
 <style>
 *{box-sizing:border-box}
-html{background:var(--zx-canvas)}
-body{margin:0;background:var(--zx-canvas);color:var(--zx-text);font:400 14px/1.55 var(--zx-font-sans);-webkit-font-smoothing:antialiased}
-main{max-width:1080px;margin:0 auto;padding:0 24px 96px}
-code{font-family:var(--zx-font-mono);font-size:12px}
-p{margin:0 0 8px;color:var(--zx-muted);max-width:70ch}
-a{color:var(--zx-accent)}
-h2{font-size:20px;font-weight:650;letter-spacing:-.015em;margin:64px 0 6px}
-h3{font-size:13px;font-weight:600;margin:22px 0 10px}
-.cap{font-size:11.5px;color:var(--zx-faint)}
+html{background:var(--zx-canvas);scroll-padding-top:72px}
+body{margin:0;background:var(--zx-canvas);color:var(--zx-text);font:400 15px/1.6 var(--zx-font-sans);-webkit-font-smoothing:antialiased;font-optical-sizing:auto}
+main{max-width:1120px;margin:0 auto;padding:0 24px}
+a{color:var(--zx-accent);text-underline-offset:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--zx-accent);outline-offset:2px;border-radius:var(--zx-radius-control)}
+code{font-family:var(--zx-font-mono);font-size:.86em}
+p{margin:0;color:var(--zx-muted);max-width:62ch}
+h2{font-size:21px;font-weight:650;letter-spacing:-.015em;line-height:1.25;margin:0 0 8px}
+h3{font-size:13px;font-weight:600;margin:0 0 10px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.mark{display:block;flex:none}
 
-.top{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;height:56px;margin:0 -24px;padding:0 24px;background:color-mix(in srgb,var(--zx-canvas) 86%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--zx-hairline)}
-.top b{font-weight:620;letter-spacing:-.01em}
-.top nav{margin-left:auto;display:flex;gap:4px;align-items:center}
-.top nav a{color:var(--zx-muted);text-decoration:none;font-size:13px;padding:6px 10px;border-radius:var(--zx-radius-control)}
+/* Header: the app's 40 pt header, a little taller for a page. */
+.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--zx-canvas) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--zx-hairline)}
+.top .in{max-width:1120px;margin:0 auto;padding:0 24px;height:52px;display:flex;align-items:center;gap:10px}
+.top .home{display:flex;align-items:center;gap:9px;color:var(--zx-text);text-decoration:none;font-weight:650;letter-spacing:-.015em;font-size:15px}
+.top nav{margin-left:auto;display:flex;align-items:center;gap:2px}
+.top nav a{color:var(--zx-muted);text-decoration:none;font-size:13px;padding:5px 10px;border-radius:var(--zx-radius-control);transition:background-color var(--zx-motion-quick),color var(--zx-motion-quick)}
 .top nav a:hover{background:var(--zx-raised);color:var(--zx-text)}
-.seg{display:flex;background:var(--zx-recess);border:1px solid var(--zx-hairline);border-radius:var(--zx-radius-control);padding:2px;margin-left:8px}
-.seg button{all:unset;cursor:pointer;font-size:12px;padding:3px 10px;border-radius:4px;color:var(--zx-muted)}
-.seg button[aria-pressed="true"]{background:var(--zx-raised);color:var(--zx-text)}
-.seg button:focus-visible{outline:2px solid var(--zx-accent)}
 
-.hero{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:56px 0 8px}
-.hero h1{font-size:40px;font-weight:650;letter-spacing:-.03em;margin:0 0 8px;line-height:1.1}
-.hero p{font-size:16px}
-
-.panel{background:var(--zx-surface);border:1px solid var(--zx-hairline);border-radius:var(--zx-radius-card);padding:18px}
-.grid{display:grid;gap:12px}
-.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
-
-.tile{border-radius:var(--zx-radius-card);border:1px solid var(--zx-hairline);padding:24px;display:flex;flex-direction:column;gap:16px;align-items:center;justify-content:center;min-height:230px}
-.tile.ondark{background:#0c0d11;color:#ecedf2}
-.tile.onlight{background:#f3f4f6;color:#1c1d21}
-.tile.onbrand{background:linear-gradient(160deg,var(--zx-logo-badge-top),var(--zx-logo-badge-mid) 55%,var(--zx-logo-badge-deep));color:#fff}
-.tile .cap{color:inherit;opacity:.65}
-.sizes{display:flex;gap:16px;align-items:end}
-.lockup{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:650;letter-spacing:-.02em}
-
-.files{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:12px}
-.files a{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:var(--zx-radius-control);background:var(--zx-surface);border:1px solid var(--zx-hairline);text-decoration:none;color:var(--zx-text);font-size:13px}
-.files a:hover{background:var(--zx-raised)}
-.files img{width:24px;height:24px}
-.files small{display:block;color:var(--zx-faint);font-size:11px}
-
-.strip{display:flex;border-radius:var(--zx-radius-card);overflow:hidden;border:1px solid var(--zx-hairline)}
-.strip div{flex:1;min-width:0;padding:52px 8px 8px;font:500 10.5px/1.35 var(--zx-font-mono);word-break:break-all}
-.strip div b{display:block;font:600 11px var(--zx-font-sans)}
-
-.sws{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
-.sw{border-radius:8px;overflow:hidden;border:1px solid var(--zx-hairline);background:var(--zx-surface)}
-.sw i{display:block;height:44px}
-.sw div{padding:8px 10px}
-.sw b{display:block;font-size:12.5px;font-weight:600}
-.sw code{color:var(--zx-muted);font-size:11px}
-.sw small{display:block;color:var(--zx-faint);font-size:11px;line-height:1.35;margin-top:2px}
-
-.type .r{display:grid;grid-template-columns:170px 1fr;gap:16px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--zx-hairline)}
-.type .r:last-child{border:0}
-.type .r code{color:var(--zx-faint)}
-
-.demo{display:grid;grid-template-columns:200px 1fr;border:1px solid var(--zx-hairline);border-radius:var(--zx-radius-card);overflow:hidden;min-height:220px}
-.demo .side{background:var(--zx-surface);border-right:1px solid var(--zx-hairline);padding:10px;display:flex;flex-direction:column;gap:2px;font-size:14px}
-.demo .row{height:28px;display:flex;align-items:center;gap:8px;padding:0 8px;border-radius:var(--zx-radius-row)}
-.demo .row .d{width:8px;height:8px;border-radius:50%;background:var(--zx-faint);opacity:.7}
-.demo .row .d.on{width:10px;height:10px;background:var(--zx-good);opacity:1;box-shadow:0 0 8px var(--zx-good)}
-.demo .main{background:var(--zx-stage);padding:16px;display:flex;flex-direction:column;gap:12px}
-.btn{all:unset;cursor:pointer;height:28px;padding:0 12px;display:inline-flex;align-items:center;border-radius:var(--zx-radius-control);font-size:13px;font-weight:560;transition:background var(--zx-motion-quick)}
+/* Controls, as Flexspeak draws them: 28 high, radius 6, title case. */
+.btn{all:unset;box-sizing:border-box;cursor:pointer;height:var(--zx-size-control);padding:0 12px;display:inline-flex;align-items:center;gap:6px;border-radius:var(--zx-radius-control);font-size:13px;font-weight:560;white-space:nowrap;transition:background-color var(--zx-motion-quick),color var(--zx-motion-quick)}
 .btn.p{background:var(--zx-accent);color:var(--zx-on-accent)}
+.btn.p:hover{background:color-mix(in srgb,var(--zx-accent) 88%,var(--zx-ink))}
 .btn.s{background:var(--zx-raised);color:var(--zx-text)}
+.btn.s:hover{background:color-mix(in srgb,var(--zx-raised) 85%,var(--zx-ink))}
 .btn.d{background:var(--zx-raised);color:var(--zx-poor)}
+.btn.g{color:var(--zx-muted)}
+.btn.g:hover{background:var(--zx-raised);color:var(--zx-text)}
 .btn:focus-visible{outline:2px solid var(--zx-accent);outline-offset:2px}
-.chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--zx-muted)}
-.chip i{width:8px;height:8px;border-radius:50%}
+.top .btn{margin-left:8px}
 
-pre{margin:0;padding:14px 16px;background:var(--zx-recess);border:1px solid var(--zx-hairline);border-radius:var(--zx-radius-control);overflow-x:auto;font:400 12.5px/1.55 var(--zx-font-mono);color:var(--zx-text)}
-ul.rules{margin:0;padding-left:18px;color:var(--zx-muted)}
-ul.rules li{margin:6px 0}
-ul.rules b{color:var(--zx-text);font-weight:600}
+.hero{padding:72px 0 64px}
+/* Hero: the lockup, large. */
+.lk{display:flex;align-items:center;gap:.3em;margin:0;font-size:clamp(44px,11vw,128px);font-weight:650;letter-spacing:-.045em;line-height:1;font-variation-settings:"opsz" 32}
+.lk svg{width:1.2em;height:auto;flex:none;translate:0 -.04em;overflow:visible}
+.lk .back,.lk .front{transform-box:fill-box}
+@media (prefers-reduced-motion:no-preference){
+  .lk .front{animation:zx-drop var(--zx-motion-settle) 240ms backwards}
+  .lk .back{animation:zx-unroll var(--zx-motion-reading) 480ms backwards}
+}
+@keyframes zx-drop{from{opacity:0;translate:0 -30%}}
+@keyframes zx-unroll{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
+.lede{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px 40px;margin-top:36px}
+.lede p{font-size:18px;line-height:1.5;color:var(--zx-text);max-width:40ch;letter-spacing:-.005em}
+.lede p span{color:var(--zx-muted)}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.acts code{display:inline-flex;align-items:center;height:var(--zx-size-control);padding:0 10px;border-radius:var(--zx-radius-control);background:var(--zx-recess);border:1px solid var(--zx-hairline);color:var(--zx-muted);font-size:12px}
 
-@media (max-width:720px){
-  .hero{grid-template-columns:1fr}
-  .hero h1{font-size:32px}
+/* Sections: label leads, content trails, like a Settings form row. */
+.sec{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px 56px;padding:56px 0;border-top:1px solid var(--zx-hairline)}
+.sec > header{align-self:start;position:sticky;top:80px}
+.sec > header p{font-size:13.5px;line-height:1.55}
+.body{display:flex;flex-direction:column;gap:40px;min-width:0}
+
+/* Logo */
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tile{border-radius:var(--zx-radius-card);border:1px solid var(--zx-hairline);padding:22px 16px 16px;display:flex;flex-direction:column;align-items:center;gap:18px;min-height:250px;background:var(--zx-canvas);color:var(--zx-text)}
+.tile .stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.tile figcaption{font-size:12px;color:var(--zx-muted);text-align:center;line-height:1.45}
+.tile.onbrand{background:linear-gradient(160deg,var(--zx-logo-badge-top),var(--zx-logo-badge-mid) 55%,var(--zx-logo-badge-deep));color:var(--zx-ink);border-color:transparent}
+.tile.onbrand figcaption{color:color-mix(in srgb,var(--zx-ink) 72%,transparent)}
+.sizes{display:flex;gap:14px;align-items:end}
+.lockup{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:650;letter-spacing:-.02em}
+
+.files{list-style:none;margin:0;padding:0;border-top:1px solid var(--zx-hairline)}
+.files li{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--zx-hairline)}
+.files .ic{width:32px;height:32px;border-radius:7px;display:grid;place-items:center;background:var(--zx-surface)}
+.files .ic.brand{background:var(--zx-logo-badge-mid)}
+.files .ic.paper{background:var(--zx-canvas)}
+.files b{font-weight:560;font-size:14px}
+.files small{display:block;font-size:12.5px;color:var(--zx-muted)}
+.files a{font-size:13px}
+
+.ramp{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-radius:var(--zx-radius-card);overflow:hidden}
+.ramp div{padding:46px 10px 10px;font-size:12px;line-height:1.35;min-width:0}
+.ramp b{display:block;font-weight:600}
+.ramp code{font-size:11px;opacity:.8}
+.note{font-size:13px;margin-top:10px}
+
+/* Colour: the window itself is the swatch book. */
+.win{border-radius:var(--zx-radius-card);border:1px solid var(--zx-hairline);background:var(--zx-canvas);overflow:hidden;font-size:13px;user-select:none}
+.win .bar{height:30px;display:flex;align-items:center;gap:8px;padding:0 12px;color:var(--zx-muted);font-size:12px}
+.win .hd{height:40px;display:flex;align-items:center;gap:8px;padding:0 14px;background:var(--zx-chrome);border-block:1px solid var(--zx-hairline)}
+.win .hd b{font-weight:620;font-size:15px;letter-spacing:-.15px}
+.win .hd span{font-size:11.5px;color:var(--zx-faint)}
+.win .cols{display:grid;grid-template-columns:200px 1fr;min-height:240px}
+.win .side{background:var(--zx-surface);border-right:1px solid var(--zx-hairline);padding:8px;display:flex;flex-direction:column;gap:2px;font-size:14px}
+.win .row{height:28px;display:flex;align-items:center;gap:8px;padding:0 8px;border-radius:var(--zx-radius-row)}
+.win .row.cur{color:var(--zx-accent);font-weight:640;background:color-mix(in srgb,var(--zx-accent) 16%,transparent)}
+.win .row.mem{padding-left:34px}
+.win .row.full{font-weight:540}
+.win .row.empty{color:var(--zx-muted)}
+.win .dot{width:8px;height:8px;border-radius:50%;background:var(--zx-faint);opacity:.7}
+.win .dot.on{width:10px;height:10px;background:var(--zx-good);opacity:1;box-shadow:0 0 8px var(--zx-good)}
+.win .stagepane{background:var(--zx-stage);padding:16px;display:flex;flex-direction:column;gap:12px}
+.win .stagepane .line{color:var(--zx-muted)}
+.win .btns{display:flex;gap:8px;flex-wrap:wrap}
+.win .screen{flex:1;min-height:76px;border-radius:var(--zx-radius-card);background:var(--zx-screen);display:grid;place-items:center;color:color-mix(in srgb,#fff 70%,transparent);font-size:12px}
+.win .foot{height:32px;display:flex;align-items:center;gap:16px;padding:0 14px;border-top:1px solid var(--zx-hairline);color:var(--zx-muted);font-size:11.5px}
+.win .foot i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:0}
+.win .faint{color:var(--zx-faint)}
+.win .well{background:var(--zx-recess);border:1px solid var(--zx-hairline);border-radius:4px;padding:1px 7px}
+.win [data-z]{transition:box-shadow var(--zx-motion-quick)}
+.win .hl{box-shadow:inset 0 0 0 2px var(--zx-accent),0 0 0 2px var(--zx-accent);position:relative;z-index:1}
+
+.keys{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;list-style:none;margin:0;padding:0}
+.keys li{display:grid;grid-template-columns:18px 84px 1fr;gap:12px;align-items:center;padding:8px 6px;margin:0 -6px;border-bottom:1px solid var(--zx-hairline);font-size:13px}
+.keys li[tabindex]{cursor:pointer}
+.keys li[tabindex]:hover{background:var(--zx-raised);border-radius:var(--zx-radius-row)}
+.keys li[tabindex]:focus-visible{outline:2px solid var(--zx-accent);outline-offset:-2px;border-radius:var(--zx-radius-row)}
+.keys i{width:18px;height:18px;border-radius:5px;box-shadow:inset 0 0 0 1px var(--zx-hairline)}
+.keys i.round{border-radius:50%;width:12px;height:12px;margin:3px;box-shadow:none}
+.keys b{font-weight:560}
+.keys span{color:var(--zx-muted);min-width:0}
+.keys code{display:block;font-size:11px;color:var(--zx-faint)}
+.hint{font-size:13px;margin-top:10px}
+
+/* Type and shape */
+.spec{border-top:1px solid var(--zx-hairline)}
+.spec .r{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--zx-hairline)}
+.spec .r code{font-size:11.5px;color:var(--zx-faint)}
+.shapes{display:flex;gap:28px;align-items:end;flex-wrap:wrap}
+.shapes figure{margin:0;display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--zx-muted)}
+.shapes .s{width:72px;background:var(--zx-raised)}
+.rules{margin:0;padding:0;list-style:none;border-top:1px solid var(--zx-hairline)}
+.rules li{padding:14px 0;border-bottom:1px solid var(--zx-hairline);color:var(--zx-muted);max-width:70ch}
+.rules b{display:block;color:var(--zx-text);font-weight:600;margin-bottom:2px}
+
+/* Use it */
+pre{margin:0;padding:14px 16px;background:var(--zx-recess);border:1px solid var(--zx-hairline);border-radius:var(--zx-radius-control);overflow-x:auto;font:400 12.5px/1.6 var(--zx-font-mono);color:var(--zx-text)}
+.use{display:flex;flex-direction:column;gap:10px}
+.use p{font-size:14px}
+
+footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--zx-faint)}
+
+@media (max-width:880px){
+  .sec{grid-template-columns:1fr;gap:20px;padding:44px 0}
+  .sec > header{position:static}
+  .tiles{grid-template-columns:1fr 1fr}
+  .tiles .tile:first-child{grid-column:1 / -1}
+  .keys{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  main,.top .in{padding:0 16px}
   .top nav a{display:none}
-  .type .r{grid-template-columns:1fr;gap:2px}
-  .demo{grid-template-columns:1fr}
-  .demo .side{border-right:0;border-bottom:1px solid var(--zx-hairline)}
-  .strip{flex-wrap:wrap}
-  .strip div{flex:1 0 33%}
+  .hero{padding:48px 0 44px}
+  .lede p{font-size:16.5px}
+  .tiles{grid-template-columns:1fr}
+  .ramp{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .win .cols{grid-template-columns:1fr}
+  .win .side{border-right:0;border-bottom:1px solid var(--zx-hairline)}
+  .spec .r{grid-template-columns:1fr;gap:2px}
+  .files li{grid-template-columns:32px minmax(0,1fr)}
+  .files li a{grid-column:2}
 }
 </style>
 </head>
 <body>
-<main>
 <header class="top">
-  <img src="logo/flexspeak.svg" width="28" height="28" alt="">
-  <b>Zirkumflex Brand</b>
-  <nav>
-    <a href="#logo">Logo</a><a href="#colour">Colour</a><a href="#type">Type</a><a href="#use">Use it</a>
-    <div class="seg" role="group" aria-label="Palette">
-      <button type="button" data-set="dark" aria-pressed="true">Dark</button>
-      <button type="button" data-set="light" aria-pressed="false">Light</button>
-    </div>
-  </nav>
+  <div class="in">
+    <a class="home" href="#top" aria-label="Zirkumflex Brand, top of page">
+      <svg class="mark" viewBox="1 3.36 22 17.28" width="22" height="17" aria-hidden="true"><path d="M9.88 3.36 L14.94 3.36 L23.00 16.32 L17.95 16.32 Z" fill="currentColor" fill-opacity="0.6"/><path d="M1.00 20.64 L6.54 20.64 L14.94 3.36 L9.39 3.36 Z" fill="currentColor"/></svg>
+      Zirkumflex
+    </a>
+    <nav aria-label="Sections">
+      <a href="#logo">Logo</a><a href="#colour">Colour</a><a href="#type">Type</a><a href="#use">Use it</a>
+      <button class="btn g" type="button" id="theme">Show Light</button>
+    </nav>
+  </div>
 </header>
 
+<main id="top">
 <section class="hero">
-  <img src="logo/flexspeak.svg" width="120" height="120" alt="Flexspeak logo">
-  <div>
-    <h1>One look for every Zirkumflex project</h1>
-    <p>Logo, colours, type and shape, taken from Flexspeak, the reference product. Web apps import the CSS, everything else reads <code>tokens.json</code>. This page is built from the same tokens, so the Dark and Light switch above shows both palettes.</p>
+  <h1 class="lk"><svg viewBox="1 3.36 22 17.28" aria-hidden="true"><path class="back" d="M9.88 3.36 L14.94 3.36 L23.00 16.32 L17.95 16.32 Z" fill="currentColor" fill-opacity="0.6"/><path class="front" d="M1.00 20.64 L6.54 20.64 L14.94 3.36 L9.39 3.36 Z" fill="currentColor"/></svg>Zirkumflex</h1>
+  <div class="lede">
+    <p>A shared starting point for Zirkumflex projects. <span>Logo, colours, type and shape, first worked out in Flexspeak.</span></p>
+    <div class="acts">
+      <code id="cmd">bun add github:zirkumflex-group/brand</code>
+      <button class="btn p" type="button" id="copy">Copy Command</button>
+    </div>
   </div>
 </section>
 
-<h2 id="logo">Logo</h2>
-<p>The circumflex (^) of Zirkumflex as a folded ribbon: the right leg runs down from behind the left leg's top, so the caret reads as one strip. On its own, the back leg is drawn at 60% so the fold still shows in one colour.</p>
-<div class="grid g3" style="margin-top:14px">
-  <div class="tile ondark">
-    <img src="logo/flexspeak.svg" width="128" height="128" alt="">
-    <div class="sizes">
-      <img src="logo/flexspeak.svg" width="48" height="48" alt="">
-      <img src="logo/flexspeak.svg" width="32" height="32" alt="">
-      <img src="logo/flexspeak.svg" width="24" height="24" alt="">
-      <img src="logo/flexspeak.svg" width="16" height="16" alt="">
+<section class="sec" id="logo" aria-labelledby="logo-h">
+  <header>
+    <h2 id="logo-h">Logo</h2>
+    <p>The circumflex of Zirkumflex as a folded ribbon. The right leg runs down from behind the left leg's top, so the caret reads as one strip. In one colour the back leg is drawn at 60%, so the fold still shows.</p>
+  </header>
+  <div class="body">
+    <div class="tiles">
+      <figure class="tile dark" style="margin:0">
+        <div class="stage">
+          <img src="logo/flexspeak.svg" width="120" height="120" alt="The Flexspeak badge">
+          <div class="sizes">
+            <img src="logo/flexspeak.svg" width="48" height="48" alt="">
+            <img src="logo/flexspeak.svg" width="32" height="32" alt="">
+            <img src="logo/flexspeak.svg" width="24" height="24" alt="">
+            <img src="logo/flexspeak.svg" width="16" height="16" alt="">
+          </div>
+        </div>
+        <figcaption>The badge holds up from 120 down to 16 px</figcaption>
+      </figure>
+      <figure class="tile light" style="margin:0">
+        <div class="stage">
+          <div class="lockup"><img src="logo/flexspeak.svg" width="34" height="34" alt="">Flexspeak</div>
+          <div class="lockup" style="font-size:20px"><img src="logo/mark-ink.svg" width="26" height="26" alt="">Zirkumflex</div>
+          <div class="sizes"><img src="logo/tile.svg" width="44" height="44" alt=""><img src="logo/tile.svg" width="28" height="28" alt=""><img src="logo/tile.svg" width="16" height="16" alt=""></div>
+        </div>
+        <figcaption>Lockups in Inter 650, with the badge and with the bare mark. The square tile is for favicons</figcaption>
+      </figure>
+      <figure class="tile onbrand dark" style="margin:0">
+        <div class="stage">
+          <img src="logo/mark-white.svg" width="92" height="92" alt="The mark in white">
+          <div class="sizes"><img src="logo/mark-white.svg" width="32" height="32" alt=""><img src="logo/mark-white.svg" width="20" height="20" alt=""><img src="logo/mark-white.svg" width="14" height="14" alt=""></div>
+        </div>
+        <figcaption>The mark alone, in one colour</figcaption>
+      </figure>
     </div>
-    <span class="cap">Badge on dark · 128 / 48 / 32 / 24 / 16</span>
+
+    <div id="files">
+      <h3>Files</h3>
+      <ul class="files">
+        <li><span class="ic"><img src="logo/flexspeak.svg" width="24" height="24" alt=""></span><span><b>flexspeak.svg</b><small>Round badge, 1024 px</small></span><a href="logo/flexspeak.svg" download>Download</a></li>
+        <li><span class="ic"><img src="logo/flexspeak.svg" width="24" height="24" alt=""></span><span><b>flexspeak.ico</b><small>Windows icon</small></span><a href="logo/flexspeak.ico" download>Download</a></li>
+        <li><span class="ic"><img src="logo/tile.svg" width="24" height="24" alt=""></span><span><b>tile.svg</b><small>Square tile, for favicons</small></span><a href="logo/tile.svg" download>Download</a></li>
+        <li><span class="ic light paper"><img src="logo/mark-ink.svg" width="20" height="20" alt=""></span><span><b>mark.svg</b><small>Takes the colour of the text around it, for inlining</small></span><a href="logo/mark.svg" download>Download</a></li>
+        <li><span class="ic brand"><img src="logo/mark-white.svg" width="20" height="20" alt=""></span><span><b>mark-white.svg</b><small>For dark backgrounds</small></span><a href="logo/mark-white.svg" download>Download</a></li>
+        <li><span class="ic light paper"><img src="logo/mark-ink.svg" width="20" height="20" alt=""></span><span><b>mark-ink.svg</b><small>For light backgrounds</small></span><a href="logo/mark-ink.svg" download>Download</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Logo colours</h3>
+      <div class="ramp" id="ramp"></div>
+      <p class="note">The badge is a deeper indigo than the interface accent. Use these colours for the logo only. The interface uses the palette below.</p>
+    </div>
   </div>
-  <div class="tile onlight">
-    <div class="lockup"><img src="logo/flexspeak.svg" width="36" height="36" alt="">Flexspeak</div>
-    <div class="lockup" style="font-size:20px"><img src="logo/mark-ink.svg" width="26" height="26" alt="">Zirkumflex</div>
-    <div class="sizes"><img src="logo/tile.svg" width="48" height="48" alt=""><img src="logo/tile.svg" width="32" height="32" alt=""><img src="logo/tile.svg" width="16" height="16" alt=""></div>
-    <span class="cap">Lockups (Inter 650) and the square tile</span>
-  </div>
-  <div class="tile onbrand">
-    <img src="logo/mark-white.svg" width="96" height="96" alt="">
-    <div class="sizes"><img src="logo/mark-white.svg" width="32" height="32" alt=""><img src="logo/mark-white.svg" width="20" height="20" alt=""><img src="logo/mark-white.svg" width="14" height="14" alt=""></div>
-    <span class="cap">The mark alone, one colour</span>
-  </div>
-</div>
+</section>
 
-<h3>Files</h3>
-<div class="files">
-  <a href="logo/flexspeak.svg" download><img src="logo/flexspeak.svg" alt=""><span>flexspeak.svg<small>Round badge, 1024</small></span></a>
-  <a href="logo/flexspeak.ico" download><img src="logo/flexspeak.svg" alt=""><span>flexspeak.ico<small>Windows icon</small></span></a>
-  <a href="logo/tile.svg" download><img src="logo/tile.svg" alt=""><span>tile.svg<small>Square tile, favicons</small></span></a>
-  <a href="logo/mark.svg" download><img src="logo/mark-ink.svg" alt="" style="background:#f3f4f6;border-radius:4px"><span>mark.svg<small>currentColor, inline</small></span></a>
-  <a href="logo/mark-white.svg" download><img src="logo/mark-white.svg" alt="" style="background:#16124a;border-radius:4px"><span>mark-white.svg<small>For dark backgrounds</small></span></a>
-  <a href="logo/mark-ink.svg" download><img src="logo/mark-ink.svg" alt="" style="background:#f3f4f6;border-radius:4px"><span>mark-ink.svg<small>For light backgrounds</small></span></a>
-</div>
-
-<h3>Logo colours</h3>
-<div class="sws" id="logo-sws"></div>
-<p class="cap" style="margin-top:8px">The logo is a deeper indigo than the interface accent. Use these only for the mark; the interface uses the palette below.</p>
-
-<h2 id="colour">Colour</h2>
-<p>Neutrals are tinted a little toward the accent's blue so panels don't read as plain grey. Primary text 7:1 or better, muted text and accent 4.5:1, faint text and status colours 3:1, against cards and chrome. Check any new colour against those.</p>
-<h3>Surfaces and text</h3>
-<div class="strip" id="strip"></div>
-<h3>Status and data</h3>
-<div class="sws" id="status-sws"></div>
-
-<h2 id="type">Type and shape</h2>
-<div class="grid g2" style="margin-top:14px">
-  <div class="panel type" id="type-scale"></div>
-  <div class="grid" style="gap:12px;align-content:start">
-    <div class="demo">
-      <div class="side">
-        <div class="row" style="color:var(--zx-accent);font-weight:640;background:color-mix(in srgb,var(--zx-accent) 16%,transparent)">Lobby</div>
-        <div class="row" style="padding-left:40px"><span class="d on"></span>Mara</div>
-        <div class="row" style="padding-left:40px"><span class="d"></span>Jonas</div>
-        <div class="row" style="font-weight:540">Gaming</div>
-        <div class="row" style="color:var(--zx-muted)">AFK</div>
+<section class="sec" id="colour" aria-labelledby="colour-h">
+  <header>
+    <h2 id="colour-h">Colour</h2>
+    <p>Colour carries meaning. The neutrals lean a little toward the accent's blue, so panels don't read as plain grey. The default palette keeps primary text at 7:1 or better, muted text and the accent at 4.5:1, and faint text and status colours at 3:1. Keep those ratios when you change a colour.</p>
+  </header>
+  <div class="body">
+    <div>
+      <div class="win" id="win" aria-hidden="true">
+        <div class="bar" data-z="canvas"><svg class="mark" viewBox="1 3.36 22 17.28" width="13" height="10"><path d="M9.88 3.36 L14.94 3.36 L23.00 16.32 L17.95 16.32 Z" fill="currentColor" fill-opacity="0.6"/><path d="M1.00 20.64 L6.54 20.64 L14.94 3.36 L9.39 3.36 Z" fill="currentColor"/></svg>Flexspeak</div>
+        <div class="hd" data-z="chrome hairline"><b data-z="text">Lobby</b><span data-z="faint">3 people</span></div>
+        <div class="cols">
+          <div class="side" data-z="surface">
+            <div class="row cur" data-z="accent">Lobby</div>
+            <div class="row mem"><span class="dot on" data-z="good"></span><span data-z="text">Mara</span></div>
+            <div class="row mem"><span class="dot" data-z="faint"></span>Jonas</div>
+            <div class="row full">Gaming</div>
+            <div class="row empty" data-z="muted">AFK</div>
+          </div>
+          <div class="stagepane" data-z="stage">
+            <span class="line" data-z="muted">Nobody is streaming in this channel.</span>
+            <div class="btns"><span class="btn p" data-z="accent on-accent">Share Screen</span><span class="btn s" data-z="raised">More Options</span><span class="btn d" data-z="raised poor">Disconnect</span></div>
+            <div class="screen" data-z="screen">A stream not yet watched</div>
+          </div>
+        </div>
+        <div class="foot" data-z="canvas hairline"><span><i style="background:var(--zx-good)" data-z="good"></i>Good</span><span class="zx-tabular well" data-z="recess">Ping 24 ms</span><span><i style="background:var(--zx-live)" data-z="live"></i>Live</span><span class="faint" data-z="faint" style="margin-left:auto">Updated just now</span></div>
       </div>
-      <div class="main">
-        <b style="font-size:17px;font-weight:620;letter-spacing:-.2px">Lobby <span style="font-size:11.5px;color:var(--zx-faint);font-weight:400">3 people</span></b>
-        <span style="font-size:13px;color:var(--zx-muted)">Nobody is streaming in this channel.</span>
-        <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn p">Share Screen</button><button class="btn s">More Options</button><button class="btn d">Disconnect</button></div>
-        <div style="display:flex;gap:14px;margin-top:auto"><span class="chip"><i style="background:var(--zx-good)"></i>Good</span><span class="chip zx-tabular">Ping 24 ms</span><span class="chip"><i style="background:var(--zx-live)"></i>Live</span></div>
-      </div>
+      <p class="hint" id="hint">Point at a colour below to see where the window uses it. Colours this window doesn't show have no pointer.</p>
     </div>
-    <div class="panel">
-      <b style="font-size:13px">Radius</b>
-      <div style="display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin-top:10px">
-        <div><div style="width:64px;height:44px;background:var(--zx-raised);border-radius:var(--zx-radius-pane)"></div><div class="cap">pane 12</div></div>
-        <div><div style="width:64px;height:44px;background:var(--zx-raised);border-radius:var(--zx-radius-card)"></div><div class="cap">card 10</div></div>
-        <div><div style="width:64px;height:28px;background:var(--zx-raised);border-radius:var(--zx-radius-control)"></div><div class="cap">control, row 6</div></div>
-        <div><div style="width:64px;height:20px;background:var(--zx-accent);border-radius:var(--zx-radius-pill)"></div><div class="cap">pill</div></div>
-      </div>
+
+    <div>
+      <h3>Surfaces and text</h3>
+      <ul class="keys" id="surfaces"></ul>
     </div>
-    <div class="panel">
-      <b style="font-size:13px">Motion</b>
-      <p class="cap" style="margin:6px 0 0">Springs, not curves. Quick 0.22 s for hover and press, settle 0.38 s with a slight bounce for panels, reading 0.45 s for colours that follow data. Nothing moves on the first frame, and reduced motion is respected.</p>
+    <div>
+      <h3>Status and data</h3>
+      <ul class="keys" id="status"></ul>
     </div>
   </div>
-</div>
+</section>
 
-<h2 id="rules">How it should feel</h2>
-<div class="panel">
-<ul class="rules">
-  <li><b>Colour means state.</b> Accent for the default action, focus, selection and where you are. Green, amber and red only for health. One red: a filled dot or tint means live, red ink on a control means it stops or removes.</li>
-  <li><b>Panels, not floating cards.</b> Separate with a hairline, a heading or space before reaching for a box. No drop shadows on content; only menus, popovers and dialogs float.</li>
-  <li><b>Compact and calm.</b> 28 px controls, labels beside their controls, title case on buttons, one short sentence of help at most.</li>
-  <li><b>Stale data never looks healthy.</b> Unknown is grey, not green.</li>
-  <li><b>Each product may pick its own accent</b> and tint the neutrals toward it, the way Flexspeak's Grove, Ocean, Ember and Iris themes do. Keep the surfaces, type, radius and status colours.</li>
-</ul>
-</div>
+<section class="sec" id="type" aria-labelledby="type-h">
+  <header>
+    <h2 id="type-h">Type and shape</h2>
+    <p>Inter is the default for interface text, with tabular figures for numbers that change in place. A project may bring a display face of its own.</p>
+  </header>
+  <div class="body">
+    <div class="spec" id="spec"></div>
+    <div>
+      <h3>Radius</h3>
+      <div class="shapes">
+        <figure><div class="s" style="height:48px;border-radius:var(--zx-radius-pane)"></div>Pane, 12</figure>
+        <figure><div class="s" style="height:48px;border-radius:var(--zx-radius-card)"></div>Card, 10</figure>
+        <figure><div class="s" style="height:28px;border-radius:var(--zx-radius-control)"></div>Control and row, 6</figure>
+        <figure><div class="s" style="height:20px;width:56px;background:var(--zx-accent);border-radius:var(--zx-radius-pill)"></div>Pill</figure>
+      </div>
+    </div>
+    <div>
+      <h3>Motion</h3>
+      <p style="font-size:14px">Springs, not curves. Quick, 0.22 s, for hover and press. Settle, 0.38 s with a slight bounce, for panels. Reading, 0.45 s, for colours that follow data. Use motion to show what changed, and respect reduced motion.</p>
+    </div>
+  </div>
+</section>
 
-<h2 id="use">Use it</h2>
-<p>In a web project (Bun, npm, pnpm), add the repo as a dependency:</p>
-<pre>bun add github:zirkumflex-group/brand</pre>
-<h3>Plain CSS</h3>
-<pre>@import "@zirkumflex/brand/tokens.css";
+<section class="sec" id="rules" aria-labelledby="rules-h">
+  <header>
+    <h2 id="rules-h">How it should feel</h2>
+    <p>Defaults, not laws. Bend them where a project's medium needs it, and keep the family resemblance.</p>
+  </header>
+  <div class="body">
+    <ul class="rules">
+      <li><b>Colour carries meaning.</b>The accent marks the main action, focus and selection. Green, amber and red are for status, so they don't double as decoration.</li>
+      <li><b>Structure before boxes.</b>Reach for space, a heading or a hairline first. Use a card when something really stands alone, and save shadows for things that float.</li>
+      <li><b>Calm by default.</b>Short, plain labels and little decoration. Pick the density that suits the medium: 28 px controls on a desktop, bigger targets on touch.</li>
+      <li><b>Honest state.</b>Data that is stale or unknown never looks healthy.</li>
+      <li><b>Make it yours.</b>A project can choose its own accent and tint the neutrals toward it, add a display face, or change radius and density. Keep the mark and what the status colours mean, so it still reads as family.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="use" aria-labelledby="use-h">
+  <header>
+    <h2 id="use-h">Use it</h2>
+    <p>Web apps import the CSS. Everything else reads <code>tokens.json</code>.</p>
+  </header>
+  <div class="body">
+    <div class="use">
+      <h3>Add the package</h3>
+      <pre>bun add github:zirkumflex-group/brand</pre>
+    </div>
+    <div class="use">
+      <h3>Plain CSS</h3>
+      <pre>@import "@zirkumflex/brand/tokens.css";
 
 body {
   background: var(--zx-canvas);
@@ -229,55 +359,121 @@ body {
   font-family: var(--zx-font-sans);
 }
 .button-primary { background: var(--zx-accent); color: var(--zx-on-accent); }</pre>
-<h3>shadcn/ui or Tailwind v4</h3>
-<pre>@import "tailwindcss";
+    </div>
+    <div class="use">
+      <h3>shadcn/ui or Tailwind v4</h3>
+      <pre>@import "tailwindcss";
 @import "@zirkumflex/brand/tokens.css";
 @import "@zirkumflex/brand/shadcn.css";  /* --background, --primary, --border … */</pre>
-<p class="cap" style="margin-top:8px">Dark is the default. Put <code>class="light"</code> or <code>data-theme="light"</code> on <code>&lt;html&gt;</code> for the light palette, or <code>data-theme="system"</code> to follow the OS.</p>
-<h3>Anything else</h3>
-<p>Swift, Rust, scripts: read <code>tokens.json</code>. Logos are plain SVG files in <code>logo/</code>. Inter is the typeface; load it from Google Fonts or bundle it.</p>
+      <p>Dark is the default. Put <code>class="light"</code> or <code>data-theme="light"</code> on <code>&lt;html&gt;</code> for the light palette, or <code>data-theme="system"</code> to follow the OS.</p>
+    </div>
+    <div class="use">
+      <h3>Anything else</h3>
+      <p>Swift, Rust and scripts read <code>tokens.json</code>. The logos are plain SVG files in <code>logo/</code>. Load Inter from Google Fonts or bundle it.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="end">
+  <svg class="mark" viewBox="1 3.36 22 17.28" width="16" height="13" aria-hidden="true"><path d="M9.88 3.36 L14.94 3.36 L23.00 16.32 L17.95 16.32 Z" fill="currentColor" fill-opacity="0.6"/><path d="M1.00 20.64 L6.54 20.64 L14.94 3.36 L9.39 3.36 Z" fill="currentColor"/></svg>
+  <span>Built from <code>tokens.css</code>. Source on <a href="https://github.com/zirkumflex-group/brand">GitHub</a>.</span>
+</footer>
 </main>
 
 <script>
-const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const root = document.documentElement;
+const css = (n) => getComputedStyle(root).getPropertyValue(n).trim();
+
 const surfaces = [
-  ["canvas","Window"],["stage","Media pane"],["chrome","Header, sidebar"],["surface","Cards, panels"],["raised","Controls, selection"],
-  ["faint","Tertiary text"],["muted","Supporting text"],["text","Primary text"],["accent","Default action, focus"]
+  ["canvas", "Window, title bar, status bar"], ["chrome", "Header"], ["surface", "Cards, panels"],
+  ["stage", "The stream pane"], ["screen", "Behind a stream's picture"], ["raised", "Controls, selection"],
+  ["text", "Primary text"], ["muted", "Supporting text"], ["faint", "Tertiary text"],
+  ["accent", "Default action, focus, where you are"], ["on-accent", "Text on the accent"],
+  ["hairline", "Dividers and edges"], ["recess", "Wells for code and charts"], ["ink", "Full-strength white or black"],
 ];
 const status = [
-  ["good","Health: good, someone talking"],["fair","Health: fair"],["poor","Health: poor, stop/remove ink"],["unknown","No data yet"],
-  ["live","Running streams, recording"],["private","Private messages"],["cpu","CPU charts"],["ram","RAM charts"]
+  ["good", "Health is good, someone talking"], ["fair", "Health is fair"], ["poor", "Health is poor; ink on stop and remove"],
+  ["unknown", "No data yet"], ["live", "Streams and recording that are running"], ["private", "Private messages"],
+  ["cpu", "CPU charts"], ["ram", "RAM charts"],
 ];
-const logo = [["badge-top","Badge, top"],["badge-mid","Badge, middle"],["badge-deep","Badge, deep"],["ribbon-front","Ribbon front"],["ribbon-back","Ribbon back"],["ribbon-shade","Ribbon shade"]];
+const logo = [["badge-top", "Badge top"], ["badge-mid", "Badge middle"], ["badge-deep", "Badge deep"],
+  ["ribbon-front", "Ribbon front"], ["ribbon-back", "Ribbon back"], ["ribbon-shade", "Ribbon shade"]];
 const typeScale = [
-  ["display","Welcome to Flexspeak"],["title","General Lobby"],["subtitle","Saved Servers"],["heading","Audio Devices"],
-  ["body","Push to talk is off."],["body-strong","3 people in this channel"],["small","Ping 24 ms, loss 0.0%"],
-  ["caption","Today"],["overline","Live elsewhere on this server"],["big-value","38.2%"],["numeric","1,024 kbit/s"]
+  ["display", "Welcome to Flexspeak"], ["title", "General Lobby"], ["subtitle", "Saved Servers"], ["heading", "Audio Devices"],
+  ["body", "Push to talk is off."], ["body-strong", "3 people in this channel"], ["small", "Ping 24 ms, loss 0.0%"],
+  ["caption", "Today"], ["overline", "Live elsewhere on this server"], ["big-value", "38.2%"], ["numeric", "1,024 kbit/s"],
 ];
-const sw = (v, name, use) => `<div class="sw"><i style="background:var(${v})"></i><div><b>${name}</b><code>${css(v)}</code><small>${use}</small></div></div>`;
 
-function render(){
-  document.getElementById("strip").innerHTML = surfaces.map(([k,u], i) =>
-    `<div style="background:var(--zx-${k});color:${i < 5 ? "var(--zx-muted)" : i === 8 ? "var(--zx-on-accent)" : "var(--zx-canvas)"};${k === "accent" ? "flex:1.6" : ""}"><b>${k}</b>${css("--zx-"+k)}<br><span style="opacity:.8">${u}</span></div>`).join("");
-  document.getElementById("status-sws").innerHTML = status.map(([k,u]) => sw("--zx-"+k, k, u)).join("");
-  document.getElementById("logo-sws").innerHTML = logo.map(([k,u]) => sw("--zx-logo-"+k, u, "")).join("");
-  document.getElementById("type-scale").innerHTML = `<b style="font-size:13px">Inter, tabular figures for numbers</b>` + typeScale.map(([k, s]) => {
+// "rgb(255 255 255 / 0.11)" reads better as "white 11%".
+const shade = (v) => {
+  const m = v.match(/^rgb\((\d+) \d+ \d+ \/ ([\d.]+)\)$/);
+  return m ? `${m[1] === "0" ? "black" : "white"} ${+(m[2] * 100).toFixed(1)}%` : v;
+};
+const key = ([k, use], round) =>
+  `<li ${win.querySelector(`[data-z~="${k}"]`) ? 'tabindex="0" ' : ""}data-k="${k}"><i class="${round ? "round" : ""}" style="background:var(--zx-${k})"></i><b>${k}<code>${shade(css("--zx-" + k))}</code></b><span>${use}</span></li>`;
+
+function render() {
+  document.getElementById("surfaces").innerHTML = surfaces.map((s) => key(s)).join("");
+  document.getElementById("status").innerHTML = status.map((s) => key(s, true)).join("");
+  document.getElementById("ramp").innerHTML = logo.map(([k, name], i) =>
+    `<div style="background:var(--zx-logo-${k});color:var(--zx-logo-${i < 3 ? "ribbon-front" : "badge-deep"})"><b>${name}</b><code>${css("--zx-logo-" + k)}</code></div>`).join("");
+  document.getElementById("spec").innerHTML = typeScale.map(([k, s]) => {
     const size = css(`--zx-text-${k}`), w = css(`--zx-weight-${k}`), tr = css(`--zx-tracking-${k}`) || "0";
     const tab = k === "big-value" || k === "numeric" ? "font-variant-numeric:tabular-nums;" : "";
-    return `<div class="r"><code>${k} ${parseFloat(size)}/${w}</code><span style="font-size:${size};font-weight:${w};letter-spacing:${tr};${tab}${k === "overline" || k === "caption" ? "color:var(--zx-faint)" : ""}">${s}</span></div>`;
+    const tone = k === "overline" || k === "caption" ? "color:var(--zx-faint);" : "";
+    return `<div class="r"><code>${k} ${parseFloat(size)}/${w}</code><span style="font-size:${size};font-weight:${w};letter-spacing:${tr};${tab}${tone}">${s}</span></div>`;
   }).join("");
 }
 
-function setTheme(t){
-  document.documentElement.dataset.theme = t;
-  document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.set === t)));
-  try { localStorage.setItem("zx-theme", t); } catch {}
+// Point at a colour, see where the window uses it.
+const win = document.getElementById("win");
+const show = (k) => win.querySelectorAll("[data-z]").forEach((el) => el.classList.toggle("hl", !!k && el.dataset.z.split(" ").includes(k)));
+for (const id of ["surfaces", "status"]) {
+  const list = document.getElementById(id);
+  list.addEventListener("pointerover", (e) => show(e.target.closest("li")?.dataset.k));
+  list.addEventListener("pointerleave", () => show(null));
+  list.addEventListener("focusin", (e) => show(e.target.closest("li")?.dataset.k));
+  list.addEventListener("focusout", () => show(null));
+}
+
+// Palette: follow the system unless someone flips it; flipping back to the system's choice forgets the override.
+const sys = matchMedia("(prefers-color-scheme: light)");
+const system = () => (sys.matches ? "light" : "dark");
+const shown = () => (root.dataset.theme === "light" || root.dataset.theme === "dark" ? root.dataset.theme : system());
+const themeBtn = document.getElementById("theme");
+function sync() {
+  themeBtn.textContent = shown() === "dark" ? "Show Light" : "Show Dark";
   render();
 }
-document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => setTheme(b.dataset.set)));
-let saved = "dark";
-try { saved = localStorage.getItem("zx-theme") || "dark"; } catch {}
-setTheme(saved);
+themeBtn.addEventListener("click", () => {
+  const target = shown() === "dark" ? "light" : "dark";
+  try {
+    if (target === system()) localStorage.removeItem("zx-theme");
+    else localStorage.setItem("zx-theme", target);
+  } catch {}
+  root.dataset.theme = target === system() ? "system" : target;
+  sync();
+});
+sys.addEventListener("change", sync);
+addEventListener("storage", (e) => {
+  if (e.key !== "zx-theme") return;
+  root.dataset.theme = e.newValue === "light" || e.newValue === "dark" ? e.newValue : "system";
+  sync();
+});
+
+// Copy the install command.
+const copy = document.getElementById("copy");
+copy.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(document.getElementById("cmd").textContent);
+    copy.textContent = "Copied";
+  } catch {
+    copy.textContent = "Select and Copy It";
+  }
+  setTimeout(() => (copy.textContent = "Copy Command"), 1800);
+});
+
+sync();
 </script>
 </body>
 </html>
