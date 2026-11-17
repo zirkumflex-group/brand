@@ -20,7 +20,9 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/build.mjs --check && node scripts/check.mjs",
-    "lockup": "bun scripts/lockup.mjs"
+    "lockup": "bun scripts/lockup.mjs",
+    "product": "node scripts/product.mjs",
+    "glyphs": "bun scripts/glyphs.mjs"
   },
   "devDependencies": {
     "fontkit": "^3.0.0"

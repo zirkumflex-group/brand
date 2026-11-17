@@ -153,28 +153,74 @@ h3{font-size:var(--zx-text-heading);font-weight:var(--zx-weight-heading);margin:
 .series{display:flex;align-items:end;gap:2px;height:72px;margin:4px 0 14px;padding-bottom:1px;border-bottom:1px solid var(--zx-hairline)}
 .series span{flex:1;max-width:36px;border-radius:4px 4px 0 0}
 
-/* Make it yours: the same window, twice. The second re-tints the neutrals toward its own accent. */
-.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;
-  --b-canvas:var(--zx-canvas);--b-stage:var(--zx-stage);--b-chrome:var(--zx-chrome);--b-surface:var(--zx-surface);--b-raised:var(--zx-raised)}
-.duo figure{margin:0;display:flex;flex-direction:column;gap:8px}
-.duo figcaption{font-size:12.5px;color:var(--zx-muted)}
+/* Make it yours: one hue drives a product's badge, tile, tab icon and palette. */
+.maker{border:1px solid var(--zx-hairline);border-radius:var(--zx-radius-pane);overflow:hidden}
+.maker .ctl{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,3fr) 64px minmax(0,8fr);gap:14px 24px;padding:16px;background:var(--zx-chrome);border-bottom:1px solid var(--zx-hairline)}
+.maker label{display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:560;color:var(--zx-muted);min-width:0}
+.maker label output{font-weight:400;font-variant-numeric:tabular-nums;color:var(--zx-faint)}
+.maker .hue{display:flex;flex-direction:column;gap:6px;min-width:0;font-size:12.5px;color:var(--zx-muted)}
+.maker .hue > span{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.maker .hue output{font-variant-numeric:tabular-nums;color:var(--zx-faint)}
+.maker .chk{flex-direction:row;align-items:center;gap:7px;cursor:pointer}
+.maker .chk input{margin:0;width:14px;height:14px;accent-color:var(--zx-accent)}
+.maker #mk-letter{text-align:center;font-weight:650;text-transform:uppercase}
+.maker input[type=range]:disabled{cursor:default;filter:grayscale(1);opacity:.45}
+.maker [data-icon]{display:block;flex:none;aspect-ratio:1}
+.maker [data-icon] svg,.tabs i svg{display:block;width:100%;height:100%}
+.tabs i{flex:none;width:16px;height:16px}
+.maker .out .btn:disabled{opacity:.45;cursor:default}
+.maker input[type=text]{all:unset;box-sizing:border-box;height:var(--zx-size-control);padding:0 9px;border-radius:var(--zx-radius-control);background:var(--zx-recess);box-shadow:inset 0 0 0 1px var(--zx-hairline);color:var(--zx-text);font-size:13px;font-weight:400;min-width:0}
+.maker select{appearance:none;-webkit-appearance:none;border:0;margin:0;font:inherit;box-sizing:border-box;height:var(--zx-size-control);padding:0 26px 0 9px;border-radius:var(--zx-radius-control);background:linear-gradient(45deg,transparent 50%,var(--zx-muted) 50%) right 14px center/5px 5px no-repeat,linear-gradient(135deg,var(--zx-muted) 50%,transparent 50%) right 9px center/5px 5px no-repeat,var(--zx-recess);box-shadow:inset 0 0 0 1px var(--zx-hairline);color:var(--zx-text);font-size:13px;font-weight:400;min-width:0;cursor:pointer}
+.maker select:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--zx-accent)}
+.maker input[type=text]:disabled{opacity:.45}
+.maker input[type=text]:focus-visible{box-shadow:inset 0 0 0 2px var(--zx-accent)}
+/* The hue slider's track is the badge colour at every hue. */
+.maker input[type=range]{appearance:none;-webkit-appearance:none;margin:0;width:100%;height:var(--zx-size-control);border-radius:var(--zx-radius-control);background:var(--hues,var(--zx-raised));cursor:pointer}
+.maker input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:34px;border-radius:6px;background:var(--zx-ink);box-shadow:0 0 0 2px var(--zx-canvas),var(--zx-shadow-raise)}
+.maker input[type=range]::-moz-range-thumb{width:12px;height:34px;border:0;border-radius:6px;background:var(--zx-ink);box-shadow:0 0 0 2px var(--zx-canvas),var(--zx-shadow-raise)}
+.maker input[type=range]:focus-visible{outline:2px solid var(--zx-accent);outline-offset:3px}
+.maker .show{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:1px;background:var(--zx-hairline)}
+.maker .show > div{background:var(--zx-canvas);padding:20px 16px;min-width:0}
+.maker .icons{display:flex;align-items:end;justify-content:center;gap:18px;flex-wrap:wrap}
+.maker .icons figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;color:var(--zx-muted)}
+.maker .icons svg{display:block}
+.maker .crop{border-radius:50%;overflow:hidden}
+.maker .strips{display:flex;flex-direction:column;justify-content:center;gap:10px}
+.tabs{display:flex;align-items:end;gap:2px;height:38px;padding:0 8px;border-radius:var(--zx-radius-control);background:var(--zx-stage);color:var(--zx-muted);font-size:12px;overflow:hidden}
+.tabs span{display:flex;align-items:center;gap:7px;height:30px;padding:0 10px;border-radius:7px 7px 0 0;min-width:0;white-space:nowrap}
+.tabs span.on{background:var(--zx-surface);color:var(--zx-text)}
+.tabs b{font-weight:400;overflow:hidden;text-overflow:ellipsis}
+.tabs svg,.tabs img{flex:none}
+.maker .winwrap{padding:16px;background:var(--zx-canvas);border-top:1px solid var(--zx-hairline)}
+.maker .out{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:14px 16px;background:var(--zx-chrome);border-top:1px solid var(--zx-hairline)}
+.maker .out code{flex:1 1 320px;min-width:0;overflow-x:auto;white-space:nowrap;padding:6px 10px;border-radius:var(--zx-radius-control);background:var(--zx-recess);box-shadow:inset 0 0 0 1px var(--zx-hairline);color:var(--zx-muted);font-size:12px}
+.maker .verdict{flex-basis:100%;font-size:12.5px;color:var(--zx-muted);max-width:none}
+.maker .verdict b{color:var(--zx-text);font-weight:560}
 .mini{border:1px solid var(--zx-hairline);border-radius:var(--zx-radius-card);background:var(--zx-canvas);color:var(--zx-text);overflow:hidden;font-size:13px}
-.mini .hd{height:var(--zx-size-header);display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--zx-chrome);border-bottom:1px solid var(--zx-hairline);font-weight:620}
-.mini .badge{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;color:#fff;background:linear-gradient(160deg,var(--zx-logo-badge-top),var(--zx-logo-badge-deep))}
-.mini .cols{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr)}
+.mini .hd{height:var(--zx-size-header);display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--zx-chrome);border-bottom:1px solid var(--zx-hairline);font-weight:620;white-space:nowrap;overflow:hidden}
+.mini .cols{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,5fr)}
 .mini .side{background:var(--zx-surface);border-right:1px solid var(--zx-hairline);padding:6px;display:flex;flex-direction:column;gap:2px}
 .mini .row{height:26px;display:flex;align-items:center;gap:7px;padding:0 8px;border-radius:var(--zx-radius-row);min-width:0;white-space:nowrap;overflow:hidden}
 .mini .row.cur{color:var(--zx-accent);font-weight:640;background:var(--zx-wash)}
 .mini .main{background:var(--zx-stage);padding:12px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.mini .main p{font-size:13px;max-width:none}
+.mini .main a{color:var(--zx-accent)}
 .mini .btns{display:flex;gap:6px;flex-wrap:wrap}
+.mini .btn{transition:none}
 .mini .stat{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--zx-muted)}
 .mini .stat i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
-.mini.alt{--hue:light-dark(#b0266a,#f28fc4);--zx-accent:var(--hue);--zx-on-accent:light-dark(#ffffff,#22091a);
-  --zx-wash:color-mix(in srgb,var(--hue) 16%,transparent);
-  --zx-canvas:color-mix(in oklab,var(--b-canvas) 95%,var(--hue));--zx-stage:color-mix(in oklab,var(--b-stage) 95%,var(--hue));
-  --zx-chrome:color-mix(in oklab,var(--b-chrome) 94%,var(--hue));--zx-surface:color-mix(in oklab,var(--b-surface) 96%,var(--hue));
-  --zx-raised:color-mix(in oklab,var(--b-raised) 93%,var(--hue))}
-.mini.alt .badge{background:linear-gradient(160deg,color-mix(in oklab,#b0266a 80%,#fff),color-mix(in oklab,#b0266a 55%,#000))}
+
+/* What stays, what changes. */
+.ladder{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 28px}
+.ladder ul{margin:0;padding:0;list-style:none;border-top:1px solid var(--zx-hairline)}
+.ladder li{padding:9px 0;border-bottom:1px solid var(--zx-hairline);font-size:13.5px;line-height:1.5;color:var(--zx-muted)}
+.ladder li b{color:var(--zx-text);font-weight:560}
+.where{width:100%;border-collapse:collapse;font-size:13.5px}
+.where th,.where td{text-align:left;vertical-align:top;padding:9px 16px 9px 0;border-bottom:1px solid var(--zx-hairline);line-height:1.5}
+.where thead th{font-size:12.5px;font-weight:560;color:var(--zx-muted);border-top:1px solid var(--zx-hairline)}
+.where tbody th{font-weight:560;white-space:nowrap}
+.where td{color:var(--zx-muted)}
+.where td:last-child,.where th:last-child{padding-right:0}
 
 /* Type and shape */
 .spec{border-top:1px solid var(--zx-hairline)}
@@ -205,7 +251,6 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
   .tiles{grid-template-columns:1fr 1fr}
   .tiles .tile:first-child{grid-column:1 / -1}
   .keys{grid-template-columns:1fr}
-  .duo{grid-template-columns:1fr}
 }
 @media (max-width:600px){
   main,.top .in{padding:0 16px}
@@ -218,7 +263,12 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
   .win .side{border-right:0;border-bottom:1px solid var(--zx-hairline)}
   .spec .r{grid-template-columns:1fr;gap:2px}
   .files li{grid-template-columns:32px minmax(0,1fr)}
-  .files li a{grid-column:2}
+  .files li > a{grid-column:2}
+  .maker .show,.ladder{grid-template-columns:1fr}
+  .maker .ctl{grid-template-columns:minmax(0,1fr) 64px}
+  .maker .ctl > :first-child,.maker .hue{grid-column:1 / -1}
+  .ladder ul + ul{margin-top:18px}
+  .where tbody th{white-space:normal}
 }
 </style>
 </head>
@@ -252,7 +302,7 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
   <header>
     <h2 id="logo-h">Logo</h2>
     <p>The circumflex of Zirkumflex as a folded ribbon. The right leg runs down from behind the left leg's top, so the caret reads as one strip. In one colour the back leg is drawn at 60%; in one ink, a gap shows the fold.</p>
-    <p class="aside">The mark and the indigo are the group's. Flexspeak, the first product, wears the indigo as its badge; a new product puts the mark on a colour of its own.</p>
+    <p class="aside">The mark and the indigo are the group's. Flexspeak, the first product, wears the indigo as its badge; a new product builds its own picture around the mark, or puts its letter under it.</p>
   </header>
   <div class="body">
     <div class="tiles">
@@ -373,34 +423,113 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
 <section class="sec" id="yours" aria-labelledby="yours-h">
   <header>
     <h2 id="yours-h">Make it yours</h2>
-    <p>A project can bring its own accent and tint the neutrals toward it. The mark, the type and what the status colours mean stay the same, so it still reads as family.</p>
+    <p>Every product gets an icon of its own, in the group's colours. Best is a picture of what the product is for, with the caret in it. Until one fits, the product's letter sits under the caret. A product with its own standing takes a colour too.</p>
+    <p class="aside">The plain caret on indigo is the group's, and Flexspeak's as the first product. A new product that ships it unchanged looks like this page, not like itself.</p>
   </header>
   <div class="body">
-    <div class="duo" aria-hidden="true">
-      <figure>
-        <div class="mini">
-          <div class="hd"><span class="badge"><svg class="mark" viewBox="1 3.36 22 17.28" width="13" height="10"><path d="M9.88 3.36 L14.94 3.36 L23.00 16.32 L17.95 16.32 Z" fill="currentColor" fill-opacity="0.6"/><path d="M1.00 20.64 L6.54 20.64 L14.94 3.36 L9.39 3.36 Z" fill="currentColor"/></svg></span>Flexspeak</div>
-          <div class="cols">
-            <div class="side"><div class="row cur">Lobby</div><div class="row">Gaming</div><div class="row">AFK</div></div>
-            <div class="main"><div class="btns"><span class="btn p">Share Screen</span><span class="btn s">More</span></div>
-              <div class="stat"><span><i style="background:var(--zx-good)"></i>Good</span><span><i style="background:var(--zx-live)"></i>Live</span></div></div>
+    <div>
+      <div class="maker" id="maker">
+        <div class="ctl">
+          <label>Name<input type="text" id="mk-name" value="Files" maxlength="24" autocomplete="off" spellcheck="false"></label>
+          <label>Icon<select id="mk-pic"><option value="file">Picture: a file</option><option value="">Letter</option></select></label>
+          <label>Letter<input type="text" id="mk-letter" value="F" maxlength="1" autocomplete="off" spellcheck="false" aria-describedby="mk-verdict"></label>
+          <div class="hue">
+            <span><label class="chk"><input type="checkbox" id="mk-own">Its own colour</label><output id="mk-hue" for="mk-range mk-own"></output></span>
+            <input type="range" id="mk-range" min="0" max="359" value="350" aria-label="Product hue" disabled>
           </div>
         </div>
-        <figcaption>The default: indigo badge, blue accent</figcaption>
-      </figure>
-      <figure>
-        <div class="mini alt">
-          <div class="hd"><span class="badge"><svg class="mark" viewBox="1 3.36 22 17.28" width="13" height="10"><path d="M9.88 3.36 L14.94 3.36 L23.00 16.32 L17.95 16.32 Z" fill="currentColor" fill-opacity="0.6"/><path d="M1.00 20.64 L6.54 20.64 L14.94 3.36 L9.39 3.36 Z" fill="currentColor"/></svg></span>Another project</div>
-          <div class="cols">
-            <div class="side"><div class="row cur">Inbox</div><div class="row">Drafts</div><div class="row">Archive</div></div>
-            <div class="main"><div class="btns"><span class="btn p">Send</span><span class="btn s">More</span></div>
-              <div class="stat"><span><i style="background:var(--zx-good)"></i>Good</span><span><i style="background:var(--zx-live)"></i>Live</span></div></div>
+        <div class="show">
+          <div class="icons">
+            <figure><span data-icon="badge" style="width:84px"></span>Badge, for apps</figure>
+            <figure><span data-icon="tile" style="width:56px"></span>Tile, for the web</figure>
+            <figure><span data-icon="maskable" class="crop" style="width:56px"></span>Maskable, cropped</figure>
+          </div>
+          <div class="strips" aria-hidden="true">
+            <div class="tabs dark"></div>
+            <div class="tabs light"></div>
           </div>
         </div>
-        <figcaption>Its own badge colour and accent, neutrals tinted 4–7% toward it. Status colours unchanged</figcaption>
-      </figure>
+        <div class="winwrap" aria-hidden="true">
+          <div class="mini" id="mk-win">
+            <div class="hd"><span data-icon="tile" style="width:22px"></span><span class="mk-n"></span></div>
+            <div class="cols">
+              <div class="side"><div class="row cur">Home</div><div class="row">Library</div><div class="row">Settings</div></div>
+              <div class="main">
+                <p>The accent marks one action, the selected row and <a>links</a>. With a colour of its own, a product's panels lean toward it.</p>
+                <div class="btns"><span class="btn p">Save Changes</span><span class="btn s">More Options</span></div>
+                <div class="stat"><span><i style="background:var(--zx-good)"></i>Good</span><span><i style="background:var(--zx-fair)"></i>Fair</span><span><i style="background:var(--zx-live)"></i>Live</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="out">
+          <p class="verdict" id="mk-verdict" role="status"></p>
+          <code id="mk-cmd"></code>
+          <button class="btn s" type="button" id="mk-copy-cmd">Copy Command</button>
+          <button class="btn p" type="button" id="mk-copy-css">Copy CSS</button>
+        </div>
+      </div>
+      <p class="hint">Run the command from a checkout of this repo. It writes the badge, tile and maskable icon, all from the one picture or letter, into the product's own repo, plus the outlined lockup when <code>--font</code> points at Inter's variable font. With a colour, it also writes <code>product.css</code>: the palette, as overrides to import after <code>tokens.css</code>.</p>
     </div>
-    <p class="hint">Check a new accent the way the defaults are checked: 4.5:1 for the accent and the text on it, on every surface.</p>
+
+    <div>
+      <h3>What stays, what changes</h3>
+      <div class="ladder">
+        <ul aria-label="Keep">
+          <li><b>Keep.</b> The mark's shape: a pale ribbon on a deep colour.</li>
+          <li>What the status colours mean.</li>
+          <li>The contrast floors.</li>
+          <li>Inter for interface text.</li>
+        </ul>
+        <ul aria-label="Every product changes">
+          <li><b>Every product changes.</b> Its icon: a picture with the caret in it, or its letter under the caret.</li>
+          <li>Its lockup: its badge with its name.</li>
+          <li>Its name wherever the header or the tab shows one.</li>
+        </ul>
+        <ul aria-label="Change if it helps">
+          <li><b>Change if it helps.</b> The colour of its icon, and with it the accent and panels.</li>
+          <li>A display face for the product's name and the page's top heading.</li>
+          <li>Radius and density, for the medium.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h3>Drawing a product's picture</h3>
+      <ul class="rules">
+        <li><b>One object the product is for.</b>A file for a place that keeps files. If it takes a sentence to explain, pick a plainer object.</li>
+        <li><b>The caret is in the picture.</b>Printed on the object, or doing a job in it: a roof, an arrow, a fold. It keeps its shape and its slant. A picture set beside the caret is two icons, and both come out half the size.</li>
+        <li><b>Pale on deep, centred.</b>The object takes the ribbon's pale tones, the caret on it the badge's deep ones. Draw it in a 64-unit square, within 30 units of the centre, with no part thinner than 4.</li>
+        <li><b>Judge it at 16 px.</b>Put it in the tab strip above, beside its siblings. If it blurs, or two look alike, simplify the object.</li>
+        <li><b>No picture yet is fine.</b>A picture that doesn't fit the product is worse than a letter. Ship the letter and swap it later; the colours and the caret don't change.</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Where each icon goes</h3>
+      <table class="where">
+        <thead><tr><th scope="col">Place</th><th scope="col">File</th><th scope="col">Mind</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Browser tab</th><td><code>tile.svg</code> as the favicon</td><td>It has to hold at 16 px, so the tile carries one picture or one letter, nothing more.</td></tr>
+          <tr><th scope="row">Installed web app</th><td>PNGs from <code>tile.svg</code>, such as 192 and 512 px, and one from <code>maskable.svg</code></td><td>Platforms crop a maskable icon to their own shape. Only the centre circle, 80% of the width, is safe, and the file is for <code>"purpose": "maskable"</code> alone.</td></tr>
+          <tr><th scope="row">Windows app</th><td>An <code>.ico</code> from <code>badge.svg</code></td><td>Include at least 16, 24, 32, 48 and 256 px.</td></tr>
+          <tr><th scope="row">macOS app</th><td>A layered icon, as in <code>logo/flexspeak-macos.icon</code></td><td>Ribbon legs as separate layers on the product's colour.</td></tr>
+          <tr><th scope="row">Beside the name</th><td><code>lockup.svg</code>, or its white or ink file</td><td>The outlined lockup needs no font. Don't rebuild it from live text.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <h3>What goes wrong</h3>
+      <ul class="rules">
+        <li><b>The product wears the group's icon.</b>Its tab then looks like every other Zirkumflex page. Give it a picture or a letter first; everything else is optional.</li>
+        <li><b>Two icons in one.</b>A picture parked under or beside the caret, or a word where one letter goes, stops reading at 16 px. Merge the picture with the caret, or use one letter.</li>
+        <li><b>The accent turns up in every row.</b>It marks one main action in a view, the selection and focus. A label that repeats down a list is muted text, and a second button is a plain one.</li>
+        <li><b>Bright dots that mean nothing.</b>Green, amber and red beside list items read as status. Decorative icons take the text colours or the chart series.</li>
+        <li><b>The display face spreads.</b>It carries the product's name and the top heading. Section headings, buttons and data stay in Inter, or the page stops reading as family.</li>
+        <li><b>A hue next to a status colour.</b>A green or red product is fine as a badge. As an accent it reads as good or poor, so keep the default accent there.</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -449,7 +578,7 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
       <li><b>Structure before boxes.</b>Reach for space, a heading or a hairline first. Use a card when something really stands alone, and save shadows for things that float.</li>
       <li><b>Calm by default.</b>Short, plain labels and little decoration. Pick the density that suits the medium: 28 px controls on a desktop, bigger targets on touch.</li>
       <li><b>Honest state.</b>Data that is stale or unknown never looks healthy.</li>
-      <li><b>Make it yours.</b>A project can choose its own accent and tint the neutrals toward it, add a display face, or change radius and density. Keep the mark and what the status colours mean, so it still reads as family.</li>
+      <li><b>Make it yours.</b>Every product has its own icon: a picture with the caret in it, or its letter until one fits. The accent, a display face, radius and density are its to change. Keep the mark and what the status colours mean, so it still reads as family.</li>
     </ul>
   </div>
 </section>
@@ -495,6 +624,8 @@ body {
 </footer>
 </main>
 
+<script src="scripts/derive.js"></script>
+<script src="scripts/glyphs.js"></script>
 <script>
 const root = document.documentElement;
 const css = (n) => getComputedStyle(root).getPropertyValue(n).trim();
@@ -548,15 +679,73 @@ function render() {
     const size = css(`--zx-text-${k}`), w = css(`--zx-weight-${k}`), lh = css(`--zx-leading-${k}`), tr = css(`--zx-tracking-${k}`) || "0";
     const tab = k === "big-value" || k === "numeric" ? "font-variant-numeric:tabular-nums;" : "";
     const tone = k === "overline" || k === "caption" ? "color:var(--zx-faint);" : "";
-    return `<div class="r"><code>${k} ${parseFloat(size)}/${w} · ${lh}</code><span style="font-size:${size};font-weight:${w};line-height:${lh};letter-spacing:${tr};${tab}${tone}">${s}</span></div>`;
+    return `<div class="r"><code>${k} ${parseFloat(size)}/${w}/${lh}</code><span style="font-size:${size};font-weight:${w};line-height:${lh};letter-spacing:${tr};${tab}${tone}">${s}</span></div>`;
   }).join("");
   document.getElementById("spaces").innerHTML = [1, 2, 3, 4, 5, 6, 7, 8].map((n) =>
     `<figure><div class="s" style="width:var(--zx-space-${n})"></div>${parseFloat(css(`--zx-space-${n}`))}</figure>`).join("");
+  renderMaker();
 }
 
 // The chart series as bars, in order.
 document.getElementById("series").innerHTML = [62, 88, 46, 70, 34].map((h, i) =>
   `<span style="height:${h}%;background:var(--zx-chart-${i + 1})"></span>`).join("");
+
+// Make it yours: a letter, a hue or both give a product its icons (scripts/derive.js).
+const mk = Object.fromEntries(["maker", "win", "range", "name", "letter", "own", "pic"].map((k) => [k, document.getElementById(k === "maker" ? k : "mk-" + k)]));
+const probes = Object.fromEntries(["dark", "light"].map((m) => { const el = document.createElement("i"); el.className = m; el.hidden = true; document.body.append(el); return [m, el]; }));
+const paletteOf = (m) => Object.fromEntries(["canvas", "stage", "chrome", "surface", "raised", "good", "fair", "poor"].map((k) => [k, getComputedStyle(probes[m]).getPropertyValue("--zx-" + k).trim()]));
+const palettes = { dark: paletteOf("dark"), light: paletteOf("light") };
+const groupLogo = Object.fromEntries(logo.map(([k]) => [k, css("--zx-logo-" + k)]));
+mk.range.style.setProperty("--hues", `linear-gradient(90deg,${Array.from({ length: 13 }, (_, i) => zxDerive(i * 30, palettes).logo["badge-top"]).join(",")})`);
+const product = () => {
+  const d = mk.own.checked ? zxDerive(+mk.range.value, palettes) : null;
+  const letter = zxDerive.letter(mk.letter.value), picture = mk.pic.value;
+  return { name: mk.name.value.trim().replace(/"/g, "") || "Your product", letter, picture, what: picture ? { picture } : letter, d, logo: d ? d.logo : groupLogo };
+};
+let iconId = 0;
+const icon = (kind, colours, what) => zxDerive.icon(kind, colours, what, `i${iconId++}-`).replace(/ width="\d+" height="\d+"/, "");
+function renderMaker() {
+  const { name, letter, picture, what, d, logo: colours } = product(), mode = shown();
+  mk.letter.disabled = !!picture;
+  mk.maker.querySelectorAll("[data-icon]").forEach((el) => (el.innerHTML = icon(el.dataset.icon, colours, what)));
+  // Three sites in the group's colours beside this one: the icons have to tell them apart at 16 px.
+  const tabs = [["Zirkumflex", groupLogo, ""], ["Status", groupLogo, "S"], ["Mail", groupLogo, "M"], [name, colours, what]];
+  mk.maker.querySelectorAll(".tabs").forEach((el) => (el.innerHTML = tabs.map(([n, c, l], i) =>
+    `<span${i === 3 ? ' class="on"' : ""}><i>${icon("tile", c, l)}</i><b></b></span>`).join("")));
+  mk.maker.querySelectorAll(".tabs b").forEach((el, i) => (el.textContent = tabs[i % 4][0]));
+  for (const k of Object.keys(zxDerive(0, palettes).dark)) d ? mk.win.style.setProperty("--zx-" + k, d[mode][k]) : mk.win.style.removeProperty("--zx-" + k);
+  mk.range.disabled = !d;
+  document.getElementById("mk-hue").textContent = d ? "hue " + mk.range.value : "the group's indigo";
+  document.querySelectorAll(".mk-n").forEach((el) => (el.textContent = name));
+  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "product";
+  const mine = d || what;
+  document.getElementById("mk-cmd").textContent = mine ? `bun scripts/product.mjs --name "${name}"${picture ? " --picture " + picture : letter ? " --letter " + letter : ""}${d ? " --hue " + mk.range.value : ""} --out ../${slug}/brand --font Inter.ttf` : "";
+  document.getElementById("mk-copy-cmd").disabled = !mine;
+  document.getElementById("mk-copy-css").disabled = !d;
+  let verdict;
+  if (!mine) verdict = "<b>That is the group's own tile.</b> Give the product a picture, a letter or a colour.";
+  else if (!d && picture) verdict = "<b>The group's colours, its own picture.</b> The palette stays as it is, so there is no CSS to add. A product's own drawing goes to the same command as a file: <code>--picture drawing.svg</code>.";
+  else if (!d) verdict = "<b>The group's colours, its own letter.</b> The letter holds the place until a picture fits. Two sites with the same letter need a second cue: a digit, another letter of the name, or a colour.";
+  else {
+    const [onPane, onAccent] = d.checks.filter((c) => c.mode === mode);
+    verdict = `<b>${d.ok ? "Holds the contrast floors." : "Below a contrast floor."}</b> Panels keep the default palette's contrast. In the ${mode} palette the accent is ${onPane.ratio.toFixed(1)}:1 on its weakest panel and the text on it ${onAccent.ratio.toFixed(1)}:1.` +
+      (d.near ? ` This hue sits next to the ${d.near} status colour: fine for the badge, but keep the default accent.` : "");
+  }
+  document.getElementById("mk-verdict").innerHTML = verdict;
+}
+// The letter follows the name until someone sets it by hand.
+mk.name.addEventListener("input", () => { if (!mk.letter.dataset.set) mk.letter.value = zxDerive.letter(mk.name.value.replace(/[^a-z0-9]/gi, "")); });
+mk.letter.addEventListener("input", () => { mk.letter.dataset.set = "1"; mk.letter.value = zxDerive.letter(mk.letter.value); });
+mk.letter.addEventListener("focus", () => mk.letter.select());
+for (const el of [mk.letter, mk.own, mk.pic]) el.addEventListener("input", renderMaker);
+mk.range.addEventListener("input", renderMaker);
+mk.name.addEventListener("input", renderMaker);
+const copied = (btn, label, text) => btn.addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(text()); btn.textContent = "Copied"; } catch { btn.textContent = "Copying Failed"; }
+  setTimeout(() => (btn.textContent = label), 1800);
+});
+copied(document.getElementById("mk-copy-cmd"), "Copy Command", () => document.getElementById("mk-cmd").textContent);
+copied(document.getElementById("mk-copy-css"), "Copy CSS", () => { const { name, d } = product(); return zxDerive.css(d, name); });
 
 // Point at a colour, see where the window uses it.
 const win = document.getElementById("win");
