@@ -13,6 +13,15 @@
 </script>
 <title>Zirkumflex Brand</title>
 <meta name="description" content="Zirkumflex logo, colours and design tokens: a shared starting point for every project.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zirkumflex Brand">
+<meta property="og:description" content="Logo, colours, type and shape for Zirkumflex projects.">
+<meta property="og:url" content="https://zirkumflex-group.github.io/brand/">
+<meta property="og:image" content="https://zirkumflex-group.github.io/brand/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Zirkumflex mark and name">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="logo/tile.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,14 +30,15 @@
 <style>
 *{box-sizing:border-box}
 html{background:var(--zx-canvas);scroll-padding-top:72px}
-body{margin:0;background:var(--zx-canvas);color:var(--zx-text);font:400 15px/1.6 var(--zx-font-sans);-webkit-font-smoothing:antialiased;font-optical-sizing:auto}
+body{margin:0;background:var(--zx-canvas);color:var(--zx-text);font:var(--zx-weight-web-body) var(--zx-text-web-body)/var(--zx-leading-web-body) var(--zx-font-sans);-webkit-font-smoothing:antialiased;font-optical-sizing:auto}
 main{max-width:1120px;margin:0 auto;padding:0 24px}
 a{color:var(--zx-accent);text-underline-offset:2px}
 a:focus-visible,button:focus-visible{outline:2px solid var(--zx-accent);outline-offset:2px;border-radius:var(--zx-radius-control)}
 code{font-family:var(--zx-font-mono);font-size:.86em}
 p{margin:0;color:var(--zx-muted);max-width:62ch}
-h2{font-size:21px;font-weight:650;letter-spacing:-.015em;line-height:1.25;margin:0 0 8px}
-h3{font-size:13px;font-weight:600;margin:0 0 10px}
+h2{font-size:var(--zx-text-web-heading);font-weight:var(--zx-weight-web-heading);letter-spacing:var(--zx-tracking-web-heading);line-height:var(--zx-leading-web-heading);margin:0 0 8px}
+h3{font-size:var(--zx-text-heading);font-weight:var(--zx-weight-heading);margin:0 0 10px}
+::selection{background:var(--zx-wash)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .mark{display:block;flex:none}
 
@@ -64,7 +74,7 @@ h3{font-size:13px;font-weight:600;margin:0 0 10px}
 @keyframes zx-drop{from{opacity:0;translate:0 -30%}}
 @keyframes zx-unroll{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
 .lede{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px 40px;margin-top:36px}
-.lede p{font-size:18px;line-height:1.5;color:var(--zx-text);max-width:40ch;letter-spacing:-.005em}
+.lede p{font-size:var(--zx-text-web-lede);line-height:var(--zx-leading-web-lede);color:var(--zx-text);max-width:40ch;letter-spacing:var(--zx-tracking-web-lede)}
 .lede p span{color:var(--zx-muted)}
 .acts{display:flex;gap:8px;flex-wrap:wrap}
 .acts code{display:inline-flex;align-items:center;height:var(--zx-size-control);padding:0 10px;border-radius:var(--zx-radius-control);background:var(--zx-recess);border:1px solid var(--zx-hairline);color:var(--zx-muted);font-size:12px}
@@ -73,6 +83,7 @@ h3{font-size:13px;font-weight:600;margin:0 0 10px}
 .sec{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px 56px;padding:56px 0;border-top:1px solid var(--zx-hairline)}
 .sec > header{align-self:start;position:sticky;top:80px}
 .sec > header p{font-size:13.5px;line-height:1.55}
+.sec > header p.aside{margin-top:12px;padding-top:12px;border-top:1px solid var(--zx-hairline)}
 .body{display:flex;flex-direction:column;gap:40px;min-width:0}
 
 /* Logo */
@@ -109,7 +120,7 @@ h3{font-size:13px;font-weight:600;margin:0 0 10px}
 .win .cols{display:grid;grid-template-columns:200px 1fr;min-height:240px}
 .win .side{background:var(--zx-surface);border-right:1px solid var(--zx-hairline);padding:8px;display:flex;flex-direction:column;gap:2px;font-size:14px}
 .win .row{height:28px;display:flex;align-items:center;gap:8px;padding:0 8px;border-radius:var(--zx-radius-row)}
-.win .row.cur{color:var(--zx-accent);font-weight:640;background:color-mix(in srgb,var(--zx-accent) 16%,transparent)}
+.win .row.cur{color:var(--zx-accent);font-weight:640;background:var(--zx-wash)}
 .win .row.mem{padding-left:34px}
 .win .row.full{font-weight:540}
 .win .row.empty{color:var(--zx-muted)}
@@ -138,13 +149,45 @@ h3{font-size:13px;font-weight:600;margin:0 0 10px}
 .keys code{display:block;font-size:11px;color:var(--zx-faint)}
 .hint{font-size:13px;margin-top:10px}
 
+/* Chart series: thin bars in series order, 2px gaps, rounded data ends. */
+.series{display:flex;align-items:end;gap:2px;height:72px;margin:4px 0 14px;padding-bottom:1px;border-bottom:1px solid var(--zx-hairline)}
+.series span{flex:1;max-width:36px;border-radius:4px 4px 0 0}
+
+/* Make it yours: the same window, twice. The second re-tints the neutrals toward its own accent. */
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;
+  --b-canvas:var(--zx-canvas);--b-stage:var(--zx-stage);--b-chrome:var(--zx-chrome);--b-surface:var(--zx-surface);--b-raised:var(--zx-raised)}
+.duo figure{margin:0;display:flex;flex-direction:column;gap:8px}
+.duo figcaption{font-size:12.5px;color:var(--zx-muted)}
+.mini{border:1px solid var(--zx-hairline);border-radius:var(--zx-radius-card);background:var(--zx-canvas);color:var(--zx-text);overflow:hidden;font-size:13px}
+.mini .hd{height:var(--zx-size-header);display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--zx-chrome);border-bottom:1px solid var(--zx-hairline);font-weight:620}
+.mini .badge{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;color:#fff;background:linear-gradient(160deg,var(--zx-logo-badge-top),var(--zx-logo-badge-deep))}
+.mini .cols{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr)}
+.mini .side{background:var(--zx-surface);border-right:1px solid var(--zx-hairline);padding:6px;display:flex;flex-direction:column;gap:2px}
+.mini .row{height:26px;display:flex;align-items:center;gap:7px;padding:0 8px;border-radius:var(--zx-radius-row);min-width:0;white-space:nowrap;overflow:hidden}
+.mini .row.cur{color:var(--zx-accent);font-weight:640;background:var(--zx-wash)}
+.mini .main{background:var(--zx-stage);padding:12px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.mini .btns{display:flex;gap:6px;flex-wrap:wrap}
+.mini .stat{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--zx-muted)}
+.mini .stat i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.mini.alt{--hue:light-dark(#b0266a,#f28fc4);--zx-accent:var(--hue);--zx-on-accent:light-dark(#ffffff,#22091a);
+  --zx-wash:color-mix(in srgb,var(--hue) 16%,transparent);
+  --zx-canvas:color-mix(in oklab,var(--b-canvas) 95%,var(--hue));--zx-stage:color-mix(in oklab,var(--b-stage) 95%,var(--hue));
+  --zx-chrome:color-mix(in oklab,var(--b-chrome) 94%,var(--hue));--zx-surface:color-mix(in oklab,var(--b-surface) 96%,var(--hue));
+  --zx-raised:color-mix(in oklab,var(--b-raised) 93%,var(--hue))}
+.mini.alt .badge{background:linear-gradient(160deg,color-mix(in oklab,#b0266a 80%,#fff),color-mix(in oklab,#b0266a 55%,#000))}
+
 /* Type and shape */
 .spec{border-top:1px solid var(--zx-hairline)}
-.spec .r{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--zx-hairline)}
+.spec .r{display:grid;grid-template-columns:200px minmax(0,1fr);gap:16px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--zx-hairline)}
 .spec .r code{font-size:11.5px;color:var(--zx-faint)}
 .shapes{display:flex;gap:28px;align-items:end;flex-wrap:wrap}
 .shapes figure{margin:0;display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--zx-muted)}
-.shapes .s{width:72px;background:var(--zx-raised)}
+.shapes .s{width:72px;background:var(--zx-raised);box-shadow:inset 0 0 0 1px var(--zx-hairline)}
+.spaces{display:flex;gap:18px;align-items:end;flex-wrap:wrap}
+.spaces figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--zx-muted)}
+.spaces .s{height:24px;background:var(--zx-accent);border-radius:2px;opacity:.85}
+.lifts{display:flex;gap:20px;flex-wrap:wrap}
+.lifts figure{margin:0;width:150px;height:84px;border-radius:var(--zx-radius-card);background:var(--zx-surface);display:grid;place-items:center;font-size:12px;color:var(--zx-muted)}
 .rules{margin:0;padding:0;list-style:none;border-top:1px solid var(--zx-hairline)}
 .rules li{padding:14px 0;border-bottom:1px solid var(--zx-hairline);color:var(--zx-muted);max-width:70ch}
 .rules b{display:block;color:var(--zx-text);font-weight:600;margin-bottom:2px}
@@ -162,6 +205,7 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
   .tiles{grid-template-columns:1fr 1fr}
   .tiles .tile:first-child{grid-column:1 / -1}
   .keys{grid-template-columns:1fr}
+  .duo{grid-template-columns:1fr}
 }
 @media (max-width:600px){
   main,.top .in{padding:0 16px}
@@ -186,7 +230,7 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
       Zirkumflex
     </a>
     <nav aria-label="Sections">
-      <a href="#logo">Logo</a><a href="#colour">Colour</a><a href="#type">Type</a><a href="#use">Use it</a>
+      <a href="#logo">Logo</a><a href="#colour">Colour</a><a href="#yours">Yours</a><a href="#type">Type</a><a href="#use">Use it</a>
       <button class="btn g" type="button" id="theme">Show Light</button>
     </nav>
   </div>
@@ -196,7 +240,7 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
 <section class="hero">
   <h1 class="lk"><svg viewBox="1 3.36 22 17.28" aria-hidden="true"><path class="back" d="M9.88 3.36 L14.94 3.36 L23.00 16.32 L17.95 16.32 Z" fill="currentColor" fill-opacity="0.6"/><path class="front" d="M1.00 20.64 L6.54 20.64 L14.94 3.36 L9.39 3.36 Z" fill="currentColor"/></svg>Zirkumflex</h1>
   <div class="lede">
-    <p>A shared starting point for Zirkumflex projects. <span>Logo, colours, type and shape, first worked out in Flexspeak.</span></p>
+    <p>A shared starting point for Zirkumflex projects. <span>Logo, colours, type and shape, in one place.</span></p>
     <div class="acts">
       <code id="cmd">bun add github:zirkumflex-group/brand</code>
       <button class="btn p" type="button" id="copy">Copy Command</button>
@@ -207,29 +251,22 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
 <section class="sec" id="logo" aria-labelledby="logo-h">
   <header>
     <h2 id="logo-h">Logo</h2>
-    <p>The circumflex of Zirkumflex as a folded ribbon. The right leg runs down from behind the left leg's top, so the caret reads as one strip. In one colour the back leg is drawn at 60%, so the fold still shows.</p>
+    <p>The circumflex of Zirkumflex as a folded ribbon. The right leg runs down from behind the left leg's top, so the caret reads as one strip. In one colour the back leg is drawn at 60%; in one ink, a gap shows the fold.</p>
+    <p class="aside">The mark and the indigo are the group's. Flexspeak, the first product, wears the indigo as its badge; a new product puts the mark on a colour of its own.</p>
   </header>
   <div class="body">
     <div class="tiles">
-      <figure class="tile dark" style="margin:0">
-        <div class="stage">
-          <img src="logo/flexspeak.svg" width="120" height="120" alt="The Flexspeak badge">
-          <div class="sizes">
-            <img src="logo/flexspeak.svg" width="48" height="48" alt="">
-            <img src="logo/flexspeak.svg" width="32" height="32" alt="">
-            <img src="logo/flexspeak.svg" width="24" height="24" alt="">
-            <img src="logo/flexspeak.svg" width="16" height="16" alt="">
-          </div>
-        </div>
-        <figcaption>The badge holds up from 120 down to 16 px</figcaption>
-      </figure>
       <figure class="tile light" style="margin:0">
         <div class="stage">
-          <div class="lockup"><img src="logo/flexspeak.svg" width="34" height="34" alt="">Flexspeak</div>
-          <div class="lockup" style="font-size:20px"><img src="logo/mark-ink.svg" width="26" height="26" alt="">Zirkumflex</div>
-          <div class="sizes"><img src="logo/tile.svg" width="44" height="44" alt=""><img src="logo/tile.svg" width="28" height="28" alt=""><img src="logo/tile.svg" width="16" height="16" alt=""></div>
+          <img src="logo/lockup-ink.svg" width="220" height="30" alt="Zirkumflex">
+          <div class="sizes">
+            <img src="logo/mark-ink.svg" width="40" height="40" alt="">
+            <img src="logo/mark-solid.svg" width="40" height="40" alt="The mark in one ink">
+            <img src="logo/tile.svg" width="40" height="40" alt="The square tile">
+            <img src="logo/tile.svg" width="16" height="16" alt="">
+          </div>
         </div>
-        <figcaption>Lockups in Inter 650, with the badge and with the bare mark. The square tile is for favicons</figcaption>
+        <figcaption>Zirkumflex: the lockup, the mark, the one-ink mark and the favicon tile</figcaption>
       </figure>
       <figure class="tile onbrand dark" style="margin:0">
         <div class="stage">
@@ -238,24 +275,45 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
         </div>
         <figcaption>The mark alone, in one colour</figcaption>
       </figure>
+      <figure class="tile dark" style="margin:0">
+        <div class="stage">
+          <img src="logo/flexspeak.svg" width="104" height="104" alt="The Flexspeak badge">
+          <div class="sizes">
+            <img src="logo/flexspeak.svg" width="48" height="48" alt="">
+            <img src="logo/flexspeak.svg" width="32" height="32" alt="">
+            <img src="logo/flexspeak.svg" width="24" height="24" alt="">
+            <img src="logo/flexspeak.svg" width="16" height="16" alt="">
+          </div>
+        </div>
+        <figcaption>Flexspeak's badge, from 104 down to 16 px</figcaption>
+      </figure>
     </div>
 
     <div id="files">
-      <h3>Files</h3>
+      <h3>Zirkumflex files</h3>
       <ul class="files">
-        <li><span class="ic"><img src="logo/flexspeak.svg" width="24" height="24" alt=""></span><span><b>flexspeak.svg</b><small>Round badge, 1024 px</small></span><a href="logo/flexspeak.svg" download>Download</a></li>
-        <li><span class="ic"><img src="logo/flexspeak.svg" width="24" height="24" alt=""></span><span><b>flexspeak.ico</b><small>Windows icon</small></span><a href="logo/flexspeak.ico" download>Download</a></li>
-        <li><span class="ic"><img src="logo/tile.svg" width="24" height="24" alt=""></span><span><b>tile.svg</b><small>Square tile, for favicons</small></span><a href="logo/tile.svg" download>Download</a></li>
         <li><span class="ic light paper"><img src="logo/mark-ink.svg" width="20" height="20" alt=""></span><span><b>mark.svg</b><small>Takes the colour of the text around it, for inlining</small></span><a href="logo/mark.svg" download>Download</a></li>
         <li><span class="ic brand"><img src="logo/mark-white.svg" width="20" height="20" alt=""></span><span><b>mark-white.svg</b><small>For dark backgrounds</small></span><a href="logo/mark-white.svg" download>Download</a></li>
         <li><span class="ic light paper"><img src="logo/mark-ink.svg" width="20" height="20" alt=""></span><span><b>mark-ink.svg</b><small>For light backgrounds</small></span><a href="logo/mark-ink.svg" download>Download</a></li>
+        <li><span class="ic light paper"><img src="logo/mark-solid.svg" width="20" height="20" alt=""></span><span><b>mark-solid.svg</b><small>One flat ink in currentColor, for print, stamps and embroidery</small></span><a href="logo/mark-solid.svg" download>Download</a></li>
+        <li><span class="ic light paper"><img src="logo/lockup-ink.svg" width="28" height="4" alt=""></span><span><b>lockup.svg</b><small>Mark and name, outlined, so it needs no font. For inlining; <a href="logo/lockup-white.svg" download>white</a> and <a href="logo/lockup-ink.svg" download>ink</a> files for images</small></span><a href="logo/lockup.svg" download>Download</a></li>
+        <li><span class="ic"><img src="logo/tile.svg" width="24" height="24" alt=""></span><span><b>tile.svg</b><small>Square tile, for favicons</small></span><a href="logo/tile.svg" download>Download</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Flexspeak files</h3>
+      <ul class="files">
+        <li><span class="ic"><img src="logo/flexspeak.svg" width="24" height="24" alt=""></span><span><b>flexspeak.svg</b><small>Round badge, 1024 px</small></span><a href="logo/flexspeak.svg" download>Download</a></li>
+        <li><span class="ic"><img src="logo/flexspeak.svg" width="24" height="24" alt=""></span><span><b>flexspeak.ico</b><small>Windows icon</small></span><a href="logo/flexspeak.ico" download>Download</a></li>
+        <li><span class="ic light paper"><img src="logo/lockup-flexspeak-ink.svg" width="28" height="6" alt=""></span><span><b>lockup-flexspeak.svg</b><small>Badge and name, outlined. For inlining; <a href="logo/lockup-flexspeak-white.svg" download>white</a> and <a href="logo/lockup-flexspeak-ink.svg" download>ink</a> files for images</small></span><a href="logo/lockup-flexspeak.svg" download>Download</a></li>
       </ul>
     </div>
 
     <div>
       <h3>Logo colours</h3>
       <div class="ramp" id="ramp"></div>
-      <p class="note">The badge is a deeper indigo than the interface accent. Use these colours for the logo only. The interface uses the palette below.</p>
+      <p class="note">The group's indigo, worn by Flexspeak's badge, is deeper than the interface accent. Use these colours for the logo only. The interface uses the palette below.</p>
     </div>
   </div>
 </section>
@@ -263,7 +321,7 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
 <section class="sec" id="colour" aria-labelledby="colour-h">
   <header>
     <h2 id="colour-h">Colour</h2>
-    <p>Colour carries meaning. The neutrals lean a little toward the accent's blue, so panels don't read as plain grey. The default palette keeps primary text at 7:1 or better, muted text and the accent at 4.5:1, and faint text and status colours at 3:1. Keep those ratios when you change a colour.</p>
+    <p>Colour carries meaning. The neutrals lean a little toward the accent's blue, so panels don't read as plain grey. On every surface and control, primary text holds 7:1, muted text and the accent 4.5:1, and faint text 3:1. Status words hold 4.5:1 on panels, chart marks 3:1. <code>bun run check</code> fails if a change breaks one.</p>
   </header>
   <div class="body">
     <div>
@@ -294,9 +352,55 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
       <ul class="keys" id="surfaces"></ul>
     </div>
     <div>
-      <h3>Status and data</h3>
+      <h3>Status</h3>
       <ul class="keys" id="status"></ul>
+      <p class="hint">Status colours are never chart series, and never the only signal: a dot comes with a word. Live and poor share a red by convention, so Live always carries its label.</p>
     </div>
+    <div>
+      <h3>Charts</h3>
+      <div class="series" id="series" aria-hidden="true"></div>
+      <ul class="keys" id="charts"></ul>
+      <p class="hint">Assign series in this order. Neighbours stay apart for the common colour-vision deficiencies; a sixth series folds into Other. In light, series 1 is the accent.</p>
+    </div>
+    <div>
+      <h3>Flexspeak's meters</h3>
+      <ul class="keys" id="meters"></ul>
+      <p class="hint">Fixed colours for two measures Flexspeak always shows together, outside the chart series.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="yours" aria-labelledby="yours-h">
+  <header>
+    <h2 id="yours-h">Make it yours</h2>
+    <p>A project can bring its own accent and tint the neutrals toward it. The mark, the type and what the status colours mean stay the same, so it still reads as family.</p>
+  </header>
+  <div class="body">
+    <div class="duo" aria-hidden="true">
+      <figure>
+        <div class="mini">
+          <div class="hd"><span class="badge"><svg class="mark" viewBox="1 3.36 22 17.28" width="13" height="10"><path d="M9.88 3.36 L14.94 3.36 L23.00 16.32 L17.95 16.32 Z" fill="currentColor" fill-opacity="0.6"/><path d="M1.00 20.64 L6.54 20.64 L14.94 3.36 L9.39 3.36 Z" fill="currentColor"/></svg></span>Flexspeak</div>
+          <div class="cols">
+            <div class="side"><div class="row cur">Lobby</div><div class="row">Gaming</div><div class="row">AFK</div></div>
+            <div class="main"><div class="btns"><span class="btn p">Share Screen</span><span class="btn s">More</span></div>
+              <div class="stat"><span><i style="background:var(--zx-good)"></i>Good</span><span><i style="background:var(--zx-live)"></i>Live</span></div></div>
+          </div>
+        </div>
+        <figcaption>The default: indigo badge, blue accent</figcaption>
+      </figure>
+      <figure>
+        <div class="mini alt">
+          <div class="hd"><span class="badge"><svg class="mark" viewBox="1 3.36 22 17.28" width="13" height="10"><path d="M9.88 3.36 L14.94 3.36 L23.00 16.32 L17.95 16.32 Z" fill="currentColor" fill-opacity="0.6"/><path d="M1.00 20.64 L6.54 20.64 L14.94 3.36 L9.39 3.36 Z" fill="currentColor"/></svg></span>Another project</div>
+          <div class="cols">
+            <div class="side"><div class="row cur">Inbox</div><div class="row">Drafts</div><div class="row">Archive</div></div>
+            <div class="main"><div class="btns"><span class="btn p">Send</span><span class="btn s">More</span></div>
+              <div class="stat"><span><i style="background:var(--zx-good)"></i>Good</span><span><i style="background:var(--zx-live)"></i>Live</span></div></div>
+          </div>
+        </div>
+        <figcaption>Its own badge colour and accent, neutrals tinted 4–7% toward it. Status colours unchanged</figcaption>
+      </figure>
+    </div>
+    <p class="hint">Check a new accent the way the defaults are checked: 4.5:1 for the accent and the text on it, on every surface.</p>
   </div>
 </section>
 
@@ -313,7 +417,18 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
         <figure><div class="s" style="height:48px;border-radius:var(--zx-radius-pane)"></div>Pane, 12</figure>
         <figure><div class="s" style="height:48px;border-radius:var(--zx-radius-card)"></div>Card, 10</figure>
         <figure><div class="s" style="height:28px;border-radius:var(--zx-radius-control)"></div>Control and row, 6</figure>
-        <figure><div class="s" style="height:20px;width:56px;background:var(--zx-accent);border-radius:var(--zx-radius-pill)"></div>Pill</figure>
+        <figure><div class="s" style="height:20px;width:56px;background:var(--zx-accent);border-radius:var(--zx-radius-pill);box-shadow:none"></div>Pill</figure>
+      </div>
+    </div>
+    <div>
+      <h3>Spacing</h3>
+      <div class="spaces" id="spaces"></div>
+    </div>
+    <div>
+      <h3>Shadows</h3>
+      <div class="lifts">
+        <figure style="box-shadow:var(--zx-shadow-raise)">Raise</figure>
+        <figure style="box-shadow:var(--zx-shadow-float)">Float: menus, popovers</figure>
       </div>
     </div>
     <div>
@@ -330,7 +445,7 @@ footer.end{border-top:1px solid var(--zx-hairline);padding:28px 0 56px;display:f
   </header>
   <div class="body">
     <ul class="rules">
-      <li><b>Colour carries meaning.</b>The accent marks the main action, focus and selection. Green, amber and red are for status, so they don't double as decoration.</li>
+      <li><b>Colour carries meaning.</b>The accent marks the main action, focus and selection. Green, amber and red are for status, so they don't double as decoration. Charts use the chart series.</li>
       <li><b>Structure before boxes.</b>Reach for space, a heading or a hairline first. Use a card when something really stands alone, and save shadows for things that float.</li>
       <li><b>Calm by default.</b>Short, plain labels and little decoration. Pick the density that suits the medium: 28 px controls on a desktop, bigger targets on touch.</li>
       <li><b>Honest state.</b>Data that is stale or unknown never looks healthy.</li>
@@ -365,18 +480,18 @@ body {
       <pre>@import "tailwindcss";
 @import "@zirkumflex/brand/tokens.css";
 @import "@zirkumflex/brand/shadcn.css";  /* --background, --primary, --border … */</pre>
-      <p>Dark is the default. Put <code>class="light"</code> or <code>data-theme="light"</code> on <code>&lt;html&gt;</code> for the light palette, or <code>data-theme="system"</code> to follow the OS.</p>
+      <p>Dark is the default. Put <code>class="light"</code> or <code>data-theme="light"</code> on <code>&lt;html&gt;</code> for the light palette, or <code>data-theme="system"</code> to follow the OS. With shadcn/ui, set <code>class="dark"</code> or <code>class="light"</code> explicitly: its <code>dark:</code> variant looks for the class. <code>--radius</code> is 8 px, so shadcn's controls come out at the brand's 6.</p>
     </div>
     <div class="use">
       <h3>Anything else</h3>
-      <p>Swift, Rust and scripts read <code>tokens.json</code>. The logos are plain SVG files in <code>logo/</code>. Load Inter from Google Fonts or bundle it.</p>
+      <p>Swift, Rust and scripts read <code>tokens.json</code>. The logos are plain SVG files in <code>logo/</code>; the lockups are outlined, so they need no font. Load Inter from Google Fonts or bundle it.</p>
     </div>
   </div>
 </section>
 
 <footer class="end">
   <svg class="mark" viewBox="1 3.36 22 17.28" width="16" height="13" aria-hidden="true"><path d="M9.88 3.36 L14.94 3.36 L23.00 16.32 L17.95 16.32 Z" fill="currentColor" fill-opacity="0.6"/><path d="M1.00 20.64 L6.54 20.64 L14.94 3.36 L9.39 3.36 Z" fill="currentColor"/></svg>
-  <span>Built from <code>tokens.css</code>. Source on <a href="https://github.com/zirkumflex-group/brand">GitHub</a>.</span>
+  <span>Built from <code>tokens.css</code>. Source on <a href="https://github.com/zirkumflex-group/brand">GitHub</a>. Code MIT; names and logos reserved.</span>
 </footer>
 </main>
 
@@ -389,25 +504,35 @@ const surfaces = [
   ["stage", "The stream pane"], ["screen", "Behind a stream's picture"], ["raised", "Controls, selection"],
   ["text", "Primary text"], ["muted", "Supporting text"], ["faint", "Tertiary text"],
   ["accent", "Default action, focus, where you are"], ["on-accent", "Text on the accent"],
-  ["hairline", "Dividers and edges"], ["recess", "Wells for code and charts"], ["ink", "Full-strength white or black"],
+  ["wash", "Selected rows, text selection"], ["hairline", "Dividers and edges"],
+  ["recess", "Wells for code and charts"], ["ink", "Full-strength white or black"],
 ];
 const status = [
-  ["good", "Health is good, someone talking"], ["fair", "Health is fair"], ["poor", "Health is poor; ink on stop and remove"],
-  ["unknown", "No data yet"], ["live", "Streams and recording that are running"], ["private", "Private messages"],
-  ["cpu", "CPU charts"], ["ram", "RAM charts"],
+  ["good", "Health is good, someone talking"], ["fair", "Health is fair"], ["poor", "Health is poor; text on stop and remove"],
+  ["unknown", "No data yet"], ["live", "Running streams and recordings, always labelled"], ["private", "Private messages"],
 ];
+const charts = [
+  ["chart-1", "Series 1"], ["chart-2", "Series 2"], ["chart-3", "Series 3"], ["chart-4", "Series 4"], ["chart-5", "Series 5"],
+];
+const meters = [["cpu", "CPU meters"], ["ram", "RAM meters"]];
 const logo = [["badge-top", "Badge top"], ["badge-mid", "Badge middle"], ["badge-deep", "Badge deep"],
   ["ribbon-front", "Ribbon front"], ["ribbon-back", "Ribbon back"], ["ribbon-shade", "Ribbon shade"]];
 const typeScale = [
   ["display", "Welcome to Flexspeak"], ["title", "General Lobby"], ["subtitle", "Saved Servers"], ["heading", "Audio Devices"],
   ["body", "Push to talk is off."], ["body-strong", "3 people in this channel"], ["small", "Ping 24 ms, loss 0.0%"],
   ["caption", "Today"], ["overline", "Live elsewhere on this server"], ["big-value", "38.2%"], ["numeric", "1,024 kbit/s"],
+  ["web-heading", "Type and shape"], ["web-lede", "A shared starting point for every project."], ["web-body", "Pages and documents use the web steps."],
 ];
 
-// "rgb(255 255 255 / 0.11)" reads better as "white 11%".
+// "rgb(255 255 255 / 0.11)" reads better as "white 11%", and the accent at an alpha as "accent 16%".
 const shade = (v) => {
-  const m = v.match(/^rgb\((\d+) \d+ \d+ \/ ([\d.]+)\)$/);
-  return m ? `${m[1] === "0" ? "black" : "white"} ${+(m[2] * 100).toFixed(1)}%` : v;
+  const m = v.match(/^rgb\((\d+ \d+ \d+) \/ ([\d.]+)\)$/);
+  if (!m) return v;
+  const pct = `${+(m[2] * 100).toFixed(1)}%`;
+  if (m[1] === "0 0 0") return `black ${pct}`;
+  if (m[1] === "255 255 255") return `white ${pct}`;
+  const hex = "#" + m[1].split(" ").map((n) => (+n).toString(16).padStart(2, "0")).join("");
+  return hex === css("--zx-accent").toLowerCase() ? `accent ${pct}` : v;
 };
 const key = ([k, use], round) =>
   `<li ${win.querySelector(`[data-z~="${k}"]`) ? 'tabindex="0" ' : ""}data-k="${k}"><i class="${round ? "round" : ""}" style="background:var(--zx-${k})"></i><b>${k}<code>${shade(css("--zx-" + k))}</code></b><span>${use}</span></li>`;
@@ -415,15 +540,23 @@ const key = ([k, use], round) =>
 function render() {
   document.getElementById("surfaces").innerHTML = surfaces.map((s) => key(s)).join("");
   document.getElementById("status").innerHTML = status.map((s) => key(s, true)).join("");
+  document.getElementById("charts").innerHTML = charts.map((s) => key(s, true)).join("");
+  document.getElementById("meters").innerHTML = meters.map((s) => key(s, true)).join("");
   document.getElementById("ramp").innerHTML = logo.map(([k, name], i) =>
     `<div style="background:var(--zx-logo-${k});color:var(--zx-logo-${i < 3 ? "ribbon-front" : "badge-deep"})"><b>${name}</b><code>${css("--zx-logo-" + k)}</code></div>`).join("");
   document.getElementById("spec").innerHTML = typeScale.map(([k, s]) => {
-    const size = css(`--zx-text-${k}`), w = css(`--zx-weight-${k}`), tr = css(`--zx-tracking-${k}`) || "0";
+    const size = css(`--zx-text-${k}`), w = css(`--zx-weight-${k}`), lh = css(`--zx-leading-${k}`), tr = css(`--zx-tracking-${k}`) || "0";
     const tab = k === "big-value" || k === "numeric" ? "font-variant-numeric:tabular-nums;" : "";
     const tone = k === "overline" || k === "caption" ? "color:var(--zx-faint);" : "";
-    return `<div class="r"><code>${k} ${parseFloat(size)}/${w}</code><span style="font-size:${size};font-weight:${w};letter-spacing:${tr};${tab}${tone}">${s}</span></div>`;
+    return `<div class="r"><code>${k} ${parseFloat(size)}/${w} · ${lh}</code><span style="font-size:${size};font-weight:${w};line-height:${lh};letter-spacing:${tr};${tab}${tone}">${s}</span></div>`;
   }).join("");
+  document.getElementById("spaces").innerHTML = [1, 2, 3, 4, 5, 6, 7, 8].map((n) =>
+    `<figure><div class="s" style="width:var(--zx-space-${n})"></div>${parseFloat(css(`--zx-space-${n}`))}</figure>`).join("");
 }
+
+// The chart series as bars, in order.
+document.getElementById("series").innerHTML = [62, 88, 46, 70, 34].map((h, i) =>
+  `<span style="height:${h}%;background:var(--zx-chart-${i + 1})"></span>`).join("");
 
 // Point at a colour, see where the window uses it.
 const win = document.getElementById("win");

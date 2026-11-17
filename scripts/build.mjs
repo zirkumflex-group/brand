@@ -9,8 +9,14 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const t = JSON.parse(readFileSync(join(root, "tokens.json"), "utf8"));
 const header = "/* Generated from tokens.json by scripts/build.mjs. Don't edit by hand. */\n";
 
-const colours = (palette, indent = "  ") =>
-  Object.entries(palette).map(([k, v]) => `${indent}--zx-${k}: ${v};`).join("\n");
+const real = (o) => Object.entries(o).filter(([k]) => !k.startsWith("$"));
+
+// A palette block: its colours, then its shadows.
+const palette = (mode, indent = "  ") =>
+  [
+    ...real(t.color[mode]).map(([k, v]) => `${indent}--zx-${k}: ${v};`),
+    ...real(t.shadow[mode]).map(([k, v]) => `${indent}--zx-shadow-${k}: ${v};`),
+  ].join("\n");
 
 const px = (n) => (n === 999 ? "999px" : `${n}px`);
 
@@ -18,16 +24,16 @@ const shared = [
   `  --zx-font-sans: ${t.font.sans};`,
   `  --zx-font-mono: ${t.font.mono};`,
   ...Object.entries(t.logo).map(([k, v]) => `  --zx-logo-${k}: ${v};`),
-  ...Object.entries(t.radius).map(([k, v]) => `  --zx-radius-${k}: ${px(v)};`),
-  ...Object.entries(t.size).map(([k, v]) => `  --zx-size-${k}: ${px(v)};`),
-  ...Object.entries(t.type).flatMap(([k, v]) => [
+  ...real(t.radius).map(([k, v]) => `  --zx-radius-${k}: ${px(v)};`),
+  ...real(t.space).map(([k, v]) => `  --zx-space-${k}: ${px(v)};`),
+  ...real(t.size).map(([k, v]) => `  --zx-size-${k}: ${px(v)};`),
+  ...real(t.type).flatMap(([k, v]) => [
     `  --zx-text-${k}: ${v.size}px;`,
     `  --zx-weight-${k}: ${v.weight};`,
+    `  --zx-leading-${k}: ${v.leading};`,
     ...(v.tracking ? [`  --zx-tracking-${k}: ${v.tracking}px;`] : []),
   ]),
-  ...Object.entries(t.motion)
-    .filter(([k]) => !k.startsWith("$"))
-    .map(([k, v]) => `  --zx-motion-${k}: ${v.css};`),
+  ...real(t.motion).map(([k, v]) => `  --zx-motion-${k}: ${v.css};`),
 ].join("\n");
 
 const tokensCss = `${header}
@@ -41,19 +47,19 @@ ${shared}
 .dark,
 [data-theme="dark"] {
   color-scheme: dark;
-${colours(t.color.dark)}
+${palette("dark")}
 }
 
 .light,
 [data-theme="light"] {
   color-scheme: light;
-${colours(t.color.light)}
+${palette("light")}
 }
 
 @media (prefers-color-scheme: light) {
   [data-theme="system"] {
     color-scheme: light;
-${colours(t.color.light, "    ")}
+${palette("light", "    ")}
   }
 }
 
@@ -66,7 +72,10 @@ ${colours(t.color.light, "    ")}
 // shadcn/ui names, mapped onto the tokens. Declared on every selector that switches palette,
 // so the aliases resolve against the palette of the element that carries the class.
 const shadcnCss = `${header}
-/* Import after tokens.css in a shadcn/ui or Tailwind app. */
+/* Import after tokens.css in a shadcn/ui or Tailwind app.
+   shadcn's dark: variant keys off class="dark", so put class="dark" or class="light" on <html>
+   rather than relying on dark being the default.
+   --radius is 8px so shadcn's rounded-md (radius - 2) gives the 6px controls. */
 :root,
 .dark,
 .light,
@@ -92,7 +101,7 @@ const shadcnCss = `${header}
   --border: var(--zx-hairline);
   --input: var(--zx-hairline);
   --ring: var(--zx-accent);
-  --radius: var(--zx-radius-card);
+  --radius: calc(var(--zx-radius-control) + 2px);
   --sidebar: var(--zx-chrome);
   --sidebar-foreground: var(--zx-text);
   --sidebar-primary: var(--zx-accent);
@@ -101,11 +110,11 @@ const shadcnCss = `${header}
   --sidebar-accent-foreground: var(--zx-text);
   --sidebar-border: var(--zx-hairline);
   --sidebar-ring: var(--zx-accent);
-  --chart-1: var(--zx-accent);
-  --chart-2: var(--zx-cpu);
-  --chart-3: var(--zx-ram);
-  --chart-4: var(--zx-good);
-  --chart-5: var(--zx-fair);
+  --chart-1: var(--zx-chart-1);
+  --chart-2: var(--zx-chart-2);
+  --chart-3: var(--zx-chart-3);
+  --chart-4: var(--zx-chart-4);
+  --chart-5: var(--zx-chart-5);
   --font-sans: var(--zx-font-sans);
   --font-mono: var(--zx-font-mono);
 }

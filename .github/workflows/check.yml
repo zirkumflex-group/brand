@@ -18,7 +18,5 @@ jobs:
           node-version: 22
       - name: Generated CSS is current
         run: node scripts/build.mjs --check
-      - name: Colours match Flexspeak
-        run: |
-          curl -fsSL https://raw.githubusercontent.com/zirkumflex-group/flexspeak/main/src/ui/theme.rs -o theme.rs
-          node scripts/check-flexspeak.mjs theme.rs
+      - name: Contrast floors hold and logos use token colours
+        run: node scripts/check.mjs

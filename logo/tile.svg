@@ -12,6 +12,8 @@
     </linearGradient>
   </defs>
   <rect width="64" height="64" rx="14" fill="url(#t)"/>
+  <!-- A faint rim, so the deep corner doesn't melt into a dark tab bar. -->
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1.5"/>
   <g transform="translate(10 10) scale(1.8333)">
     <path d="M9.88 3.36 L14.94 3.36 L23.00 16.32 L17.95 16.32 Z" fill="#9fb2ff"/>
     <path d="M1.00 20.64 L6.54 20.64 L14.94 3.36 L9.39 3.36 Z" fill="url(#f)"/>

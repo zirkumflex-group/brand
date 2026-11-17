@@ -1,6 +1,9 @@
 /* Generated from tokens.json by scripts/build.mjs. Don't edit by hand. */
 
-/* Import after tokens.css in a shadcn/ui or Tailwind app. */
+/* Import after tokens.css in a shadcn/ui or Tailwind app.
+   shadcn's dark: variant keys off class="dark", so put class="dark" or class="light" on <html>
+   rather than relying on dark being the default.
+   --radius is 8px so shadcn's rounded-md (radius - 2) gives the 6px controls. */
 :root,
 .dark,
 .light,
@@ -26,7 +29,7 @@
   --border: var(--zx-hairline);
   --input: var(--zx-hairline);
   --ring: var(--zx-accent);
-  --radius: var(--zx-radius-card);
+  --radius: calc(var(--zx-radius-control) + 2px);
   --sidebar: var(--zx-chrome);
   --sidebar-foreground: var(--zx-text);
   --sidebar-primary: var(--zx-accent);
@@ -35,11 +38,11 @@
   --sidebar-accent-foreground: var(--zx-text);
   --sidebar-border: var(--zx-hairline);
   --sidebar-ring: var(--zx-accent);
-  --chart-1: var(--zx-accent);
-  --chart-2: var(--zx-cpu);
-  --chart-3: var(--zx-ram);
-  --chart-4: var(--zx-good);
-  --chart-5: var(--zx-fair);
+  --chart-1: var(--zx-chart-1);
+  --chart-2: var(--zx-chart-2);
+  --chart-3: var(--zx-chart-3);
+  --chart-4: var(--zx-chart-4);
+  --chart-5: var(--zx-chart-5);
   --font-sans: var(--zx-font-sans);
   --font-mono: var(--zx-font-mono);
 }
