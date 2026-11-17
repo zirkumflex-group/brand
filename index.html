@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zirkumflex Brand</title>
+<meta name="description" content="Zirkumflex logo, colours and design tokens, taken from Flexspeak.">
+<link rel="icon" href="logo/tile.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;560;600;620;650&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+*{box-sizing:border-box}
+html{background:var(--zx-canvas)}
+body{margin:0;background:var(--zx-canvas);color:var(--zx-text);font:400 14px/1.55 var(--zx-font-sans);-webkit-font-smoothing:antialiased}
+main{max-width:1080px;margin:0 auto;padding:0 24px 96px}
+code{font-family:var(--zx-font-mono);font-size:12px}
+p{margin:0 0 8px;color:var(--zx-muted);max-width:70ch}
+a{color:var(--zx-accent)}
+h2{font-size:20px;font-weight:650;letter-spacing:-.015em;margin:64px 0 6px}
+h3{font-size:13px;font-weight:600;margin:22px 0 10px}
+.cap{font-size:11.5px;color:var(--zx-faint)}
+
+.top{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;height:56px;margin:0 -24px;padding:0 24px;background:color-mix(in srgb,var(--zx-canvas) 86%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--zx-hairline)}
+.top b{font-weight:620;letter-spacing:-.01em}
+.top nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.top nav a{color:var(--zx-muted);text-decoration:none;font-size:13px;padding:6px 10px;border-radius:var(--zx-radius-control)}
+.top nav a:hover{background:var(--zx-raised);color:var(--zx-text)}
+.seg{display:flex;background:var(--zx-recess);border:1px solid var(--zx-hairline);border-radius:var(--zx-radius-control);padding:2px;margin-left:8px}
+.seg button{all:unset;cursor:pointer;font-size:12px;padding:3px 10px;border-radius:4px;color:var(--zx-muted)}
+.seg button[aria-pressed="true"]{background:var(--zx-raised);color:var(--zx-text)}
+.seg button:focus-visible{outline:2px solid var(--zx-accent)}
+
+.hero{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:56px 0 8px}
+.hero h1{font-size:40px;font-weight:650;letter-spacing:-.03em;margin:0 0 8px;line-height:1.1}
+.hero p{font-size:16px}
+
+.panel{background:var(--zx-surface);border:1px solid var(--zx-hairline);border-radius:var(--zx-radius-card);padding:18px}
+.grid{display:grid;gap:12px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+
+.tile{border-radius:var(--zx-radius-card);border:1px solid var(--zx-hairline);padding:24px;display:flex;flex-direction:column;gap:16px;align-items:center;justify-content:center;min-height:230px}
+.tile.ondark{background:#0c0d11;color:#ecedf2}
+.tile.onlight{background:#f3f4f6;color:#1c1d21}
+.tile.onbrand{background:linear-gradient(160deg,var(--zx-logo-badge-top),var(--zx-logo-badge-mid) 55%,var(--zx-logo-badge-deep));color:#fff}
+.tile .cap{color:inherit;opacity:.65}
+.sizes{display:flex;gap:16px;align-items:end}
+.lockup{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:650;letter-spacing:-.02em}
+
+.files{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:12px}
+.files a{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:var(--zx-radius-control);background:var(--zx-surface);border:1px solid var(--zx-hairline);text-decoration:none;color:var(--zx-text);font-size:13px}
+.files a:hover{background:var(--zx-raised)}
+.files img{width:24px;height:24px}
+.files small{display:block;color:var(--zx-faint);font-size:11px}
+
+.strip{display:flex;border-radius:var(--zx-radius-card);overflow:hidden;border:1px solid var(--zx-hairline)}
+.strip div{flex:1;min-width:0;padding:52px 8px 8px;font:500 10.5px/1.35 var(--zx-font-mono);word-break:break-all}
+.strip div b{display:block;font:600 11px var(--zx-font-sans)}
+
+.sws{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.sw{border-radius:8px;overflow:hidden;border:1px solid var(--zx-hairline);background:var(--zx-surface)}
+.sw i{display:block;height:44px}
+.sw div{padding:8px 10px}
+.sw b{display:block;font-size:12.5px;font-weight:600}
+.sw code{color:var(--zx-muted);font-size:11px}
+.sw small{display:block;color:var(--zx-faint);font-size:11px;line-height:1.35;margin-top:2px}
+
+.type .r{display:grid;grid-template-columns:170px 1fr;gap:16px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--zx-hairline)}
+.type .r:last-child{border:0}
+.type .r code{color:var(--zx-faint)}
+
+.demo{display:grid;grid-template-columns:200px 1fr;border:1px solid var(--zx-hairline);border-radius:var(--zx-radius-card);overflow:hidden;min-height:220px}
+.demo .side{background:var(--zx-surface);border-right:1px solid var(--zx-hairline);padding:10px;display:flex;flex-direction:column;gap:2px;font-size:14px}
+.demo .row{height:28px;display:flex;align-items:center;gap:8px;padding:0 8px;border-radius:var(--zx-radius-row)}
+.demo .row .d{width:8px;height:8px;border-radius:50%;background:var(--zx-faint);opacity:.7}
+.demo .row .d.on{width:10px;height:10px;background:var(--zx-good);opacity:1;box-shadow:0 0 8px var(--zx-good)}
+.demo .main{background:var(--zx-stage);padding:16px;display:flex;flex-direction:column;gap:12px}
+.btn{all:unset;cursor:pointer;height:28px;padding:0 12px;display:inline-flex;align-items:center;border-radius:var(--zx-radius-control);font-size:13px;font-weight:560;transition:background var(--zx-motion-quick)}
+.btn.p{background:var(--zx-accent);color:var(--zx-on-accent)}
+.btn.s{background:var(--zx-raised);color:var(--zx-text)}
+.btn.d{background:var(--zx-raised);color:var(--zx-poor)}
+.btn:focus-visible{outline:2px solid var(--zx-accent);outline-offset:2px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--zx-muted)}
+.chip i{width:8px;height:8px;border-radius:50%}
+
+pre{margin:0;padding:14px 16px;background:var(--zx-recess);border:1px solid var(--zx-hairline);border-radius:var(--zx-radius-control);overflow-x:auto;font:400 12.5px/1.55 var(--zx-font-mono);color:var(--zx-text)}
+ul.rules{margin:0;padding-left:18px;color:var(--zx-muted)}
+ul.rules li{margin:6px 0}
+ul.rules b{color:var(--zx-text);font-weight:600}
+
+@media (max-width:720px){
+  .hero{grid-template-columns:1fr}
+  .hero h1{font-size:32px}
+  .top nav a{display:none}
+  .type .r{grid-template-columns:1fr;gap:2px}
+  .demo{grid-template-columns:1fr}
+  .demo .side{border-right:0;border-bottom:1px solid var(--zx-hairline)}
+  .strip{flex-wrap:wrap}
+  .strip div{flex:1 0 33%}
+}
+</style>
+</head>
+<body>
+<main>
+<header class="top">
+  <img src="logo/flexspeak.svg" width="28" height="28" alt="">
+  <b>Zirkumflex Brand</b>
+  <nav>
+    <a href="#logo">Logo</a><a href="#colour">Colour</a><a href="#type">Type</a><a href="#use">Use it</a>
+    <div class="seg" role="group" aria-label="Palette">
+      <button type="button" data-set="dark" aria-pressed="true">Dark</button>
+      <button type="button" data-set="light" aria-pressed="false">Light</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <img src="logo/flexspeak.svg" width="120" height="120" alt="Flexspeak logo">
+  <div>
+    <h1>One look for every Zirkumflex project</h1>
+    <p>Logo, colours, type and shape, taken from Flexspeak, the reference product. Web apps import the CSS, everything else reads <code>tokens.json</code>. This page is built from the same tokens, so the Dark and Light switch above shows both palettes.</p>
+  </div>
+</section>
+
+<h2 id="logo">Logo</h2>
+<p>The circumflex (^) of Zirkumflex as a folded ribbon: the right leg runs down from behind the left leg's top, so the caret reads as one strip. On its own, the back leg is drawn at 60% so the fold still shows in one colour.</p>
+<div class="grid g3" style="margin-top:14px">
+  <div class="tile ondark">
+    <img src="logo/flexspeak.svg" width="128" height="128" alt="">
+    <div class="sizes">
+      <img src="logo/flexspeak.svg" width="48" height="48" alt="">
+      <img src="logo/flexspeak.svg" width="32" height="32" alt="">
+      <img src="logo/flexspeak.svg" width="24" height="24" alt="">
+      <img src="logo/flexspeak.svg" width="16" height="16" alt="">
+    </div>
+    <span class="cap">Badge on dark · 128 / 48 / 32 / 24 / 16</span>
+  </div>
+  <div class="tile onlight">
+    <div class="lockup"><img src="logo/flexspeak.svg" width="36" height="36" alt="">Flexspeak</div>
+    <div class="lockup" style="font-size:20px"><img src="logo/mark-ink.svg" width="26" height="26" alt="">Zirkumflex</div>
+    <div class="sizes"><img src="logo/tile.svg" width="48" height="48" alt=""><img src="logo/tile.svg" width="32" height="32" alt=""><img src="logo/tile.svg" width="16" height="16" alt=""></div>
+    <span class="cap">Lockups (Inter 650) and the square tile</span>
+  </div>
+  <div class="tile onbrand">
+    <img src="logo/mark-white.svg" width="96" height="96" alt="">
+    <div class="sizes"><img src="logo/mark-white.svg" width="32" height="32" alt=""><img src="logo/mark-white.svg" width="20" height="20" alt=""><img src="logo/mark-white.svg" width="14" height="14" alt=""></div>
+    <span class="cap">The mark alone, one colour</span>
+  </div>
+</div>
+
+<h3>Files</h3>
+<div class="files">
+  <a href="logo/flexspeak.svg" download><img src="logo/flexspeak.svg" alt=""><span>flexspeak.svg<small>Round badge, 1024</small></span></a>
+  <a href="logo/flexspeak.ico" download><img src="logo/flexspeak.svg" alt=""><span>flexspeak.ico<small>Windows icon</small></span></a>
+  <a href="logo/tile.svg" download><img src="logo/tile.svg" alt=""><span>tile.svg<small>Square tile, favicons</small></span></a>
+  <a href="logo/mark.svg" download><img src="logo/mark-ink.svg" alt="" style="background:#f3f4f6;border-radius:4px"><span>mark.svg<small>currentColor, inline</small></span></a>
+  <a href="logo/mark-white.svg" download><img src="logo/mark-white.svg" alt="" style="background:#16124a;border-radius:4px"><span>mark-white.svg<small>For dark backgrounds</small></span></a>
+  <a href="logo/mark-ink.svg" download><img src="logo/mark-ink.svg" alt="" style="background:#f3f4f6;border-radius:4px"><span>mark-ink.svg<small>For light backgrounds</small></span></a>
+</div>
+
+<h3>Logo colours</h3>
+<div class="sws" id="logo-sws"></div>
+<p class="cap" style="margin-top:8px">The logo is a deeper indigo than the interface accent. Use these only for the mark; the interface uses the palette below.</p>
+
+<h2 id="colour">Colour</h2>
+<p>Neutrals are tinted a little toward the accent's blue so panels don't read as plain grey. Primary text 7:1 or better, muted text and accent 4.5:1, faint text and status colours 3:1, against cards and chrome. Check any new colour against those.</p>
+<h3>Surfaces and text</h3>
+<div class="strip" id="strip"></div>
+<h3>Status and data</h3>
+<div class="sws" id="status-sws"></div>
+
+<h2 id="type">Type and shape</h2>
+<div class="grid g2" style="margin-top:14px">
+  <div class="panel type" id="type-scale"></div>
+  <div class="grid" style="gap:12px;align-content:start">
+    <div class="demo">
+      <div class="side">
+        <div class="row" style="color:var(--zx-accent);font-weight:640;background:color-mix(in srgb,var(--zx-accent) 16%,transparent)">Lobby</div>
+        <div class="row" style="padding-left:40px"><span class="d on"></span>Mara</div>
+        <div class="row" style="padding-left:40px"><span class="d"></span>Jonas</div>
+        <div class="row" style="font-weight:540">Gaming</div>
+        <div class="row" style="color:var(--zx-muted)">AFK</div>
+      </div>
+      <div class="main">
+        <b style="font-size:17px;font-weight:620;letter-spacing:-.2px">Lobby <span style="font-size:11.5px;color:var(--zx-faint);font-weight:400">3 people</span></b>
+        <span style="font-size:13px;color:var(--zx-muted)">Nobody is streaming in this channel.</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn p">Share Screen</button><button class="btn s">More Options</button><button class="btn d">Disconnect</button></div>
+        <div style="display:flex;gap:14px;margin-top:auto"><span class="chip"><i style="background:var(--zx-good)"></i>Good</span><span class="chip zx-tabular">Ping 24 ms</span><span class="chip"><i style="background:var(--zx-live)"></i>Live</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <b style="font-size:13px">Radius</b>
+      <div style="display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin-top:10px">
+        <div><div style="width:64px;height:44px;background:var(--zx-raised);border-radius:var(--zx-radius-pane)"></div><div class="cap">pane 12</div></div>
+        <div><div style="width:64px;height:44px;background:var(--zx-raised);border-radius:var(--zx-radius-card)"></div><div class="cap">card 10</div></div>
+        <div><div style="width:64px;height:28px;background:var(--zx-raised);border-radius:var(--zx-radius-control)"></div><div class="cap">control, row 6</div></div>
+        <div><div style="width:64px;height:20px;background:var(--zx-accent);border-radius:var(--zx-radius-pill)"></div><div class="cap">pill</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <b style="font-size:13px">Motion</b>
+      <p class="cap" style="margin:6px 0 0">Springs, not curves. Quick 0.22 s for hover and press, settle 0.38 s with a slight bounce for panels, reading 0.45 s for colours that follow data. Nothing moves on the first frame, and reduced motion is respected.</p>
+    </div>
+  </div>
+</div>
+
+<h2 id="rules">How it should feel</h2>
+<div class="panel">
+<ul class="rules">
+  <li><b>Colour means state.</b> Accent for the default action, focus, selection and where you are. Green, amber and red only for health. One red: a filled dot or tint means live, red ink on a control means it stops or removes.</li>
+  <li><b>Panels, not floating cards.</b> Separate with a hairline, a heading or space before reaching for a box. No drop shadows on content; only menus, popovers and dialogs float.</li>
+  <li><b>Compact and calm.</b> 28 px controls, labels beside their controls, title case on buttons, one short sentence of help at most.</li>
+  <li><b>Stale data never looks healthy.</b> Unknown is grey, not green.</li>
+  <li><b>Each product may pick its own accent</b> and tint the neutrals toward it, the way Flexspeak's Grove, Ocean, Ember and Iris themes do. Keep the surfaces, type, radius and status colours.</li>
+</ul>
+</div>
+
+<h2 id="use">Use it</h2>
+<p>In a web project (Bun, npm, pnpm), add the repo as a dependency:</p>
+<pre>bun add github:zirkumflex-group/brand</pre>
+<h3>Plain CSS</h3>
+<pre>@import "@zirkumflex/brand/tokens.css";
+
+body {
+  background: var(--zx-canvas);
+  color: var(--zx-text);
+  font-family: var(--zx-font-sans);
+}
+.button-primary { background: var(--zx-accent); color: var(--zx-on-accent); }</pre>
+<h3>shadcn/ui or Tailwind v4</h3>
+<pre>@import "tailwindcss";
+@import "@zirkumflex/brand/tokens.css";
+@import "@zirkumflex/brand/shadcn.css";  /* --background, --primary, --border … */</pre>
+<p class="cap" style="margin-top:8px">Dark is the default. Put <code>class="light"</code> or <code>data-theme="light"</code> on <code>&lt;html&gt;</code> for the light palette, or <code>data-theme="system"</code> to follow the OS.</p>
+<h3>Anything else</h3>
+<p>Swift, Rust, scripts: read <code>tokens.json</code>. Logos are plain SVG files in <code>logo/</code>. Inter is the typeface; load it from Google Fonts or bundle it.</p>
+</main>
+
+<script>
+const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const surfaces = [
+  ["canvas","Window"],["stage","Media pane"],["chrome","Header, sidebar"],["surface","Cards, panels"],["raised","Controls, selection"],
+  ["faint","Tertiary text"],["muted","Supporting text"],["text","Primary text"],["accent","Default action, focus"]
+];
+const status = [
+  ["good","Health: good, someone talking"],["fair","Health: fair"],["poor","Health: poor, stop/remove ink"],["unknown","No data yet"],
+  ["live","Running streams, recording"],["private","Private messages"],["cpu","CPU charts"],["ram","RAM charts"]
+];
+const logo = [["badge-top","Badge, top"],["badge-mid","Badge, middle"],["badge-deep","Badge, deep"],["ribbon-front","Ribbon front"],["ribbon-back","Ribbon back"],["ribbon-shade","Ribbon shade"]];
+const typeScale = [
+  ["display","Welcome to Flexspeak"],["title","General Lobby"],["subtitle","Saved Servers"],["heading","Audio Devices"],
+  ["body","Push to talk is off."],["body-strong","3 people in this channel"],["small","Ping 24 ms, loss 0.0%"],
+  ["caption","Today"],["overline","Live elsewhere on this server"],["big-value","38.2%"],["numeric","1,024 kbit/s"]
+];
+const sw = (v, name, use) => `<div class="sw"><i style="background:var(${v})"></i><div><b>${name}</b><code>${css(v)}</code><small>${use}</small></div></div>`;
+
+function render(){
+  document.getElementById("strip").innerHTML = surfaces.map(([k,u], i) =>
+    `<div style="background:var(--zx-${k});color:${i < 5 ? "var(--zx-muted)" : i === 8 ? "var(--zx-on-accent)" : "var(--zx-canvas)"};${k === "accent" ? "flex:1.6" : ""}"><b>${k}</b>${css("--zx-"+k)}<br><span style="opacity:.8">${u}</span></div>`).join("");
+  document.getElementById("status-sws").innerHTML = status.map(([k,u]) => sw("--zx-"+k, k, u)).join("");
+  document.getElementById("logo-sws").innerHTML = logo.map(([k,u]) => sw("--zx-logo-"+k, u, "")).join("");
+  document.getElementById("type-scale").innerHTML = `<b style="font-size:13px">Inter, tabular figures for numbers</b>` + typeScale.map(([k, s]) => {
+    const size = css(`--zx-text-${k}`), w = css(`--zx-weight-${k}`), tr = css(`--zx-tracking-${k}`) || "0";
+    const tab = k === "big-value" || k === "numeric" ? "font-variant-numeric:tabular-nums;" : "";
+    return `<div class="r"><code>${k} ${parseFloat(size)}/${w}</code><span style="font-size:${size};font-weight:${w};letter-spacing:${tr};${tab}${k === "overline" || k === "caption" ? "color:var(--zx-faint)" : ""}">${s}</span></div>`;
+  }).join("");
+}
+
+function setTheme(t){
+  document.documentElement.dataset.theme = t;
+  document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.set === t)));
+  try { localStorage.setItem("zx-theme", t); } catch {}
+  render();
+}
+document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => setTheme(b.dataset.set)));
+let saved = "dark";
+try { saved = localStorage.getItem("zx-theme") || "dark"; } catch {}
+setTheme(saved);
+</script>
+</body>
+</html>

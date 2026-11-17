@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- The square app tile: the mark on the badge's indigo, for favicons and places a round badge doesn't fit. -->
+  <defs>
+    <linearGradient id="t" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#4f4fc4"/>
+      <stop offset="0.55" stop-color="#2a2585"/>
+      <stop offset="1" stop-color="#16124a"/>
+    </linearGradient>
+    <linearGradient id="f" x1="0" y1="1" x2="0.4" y2="0">
+      <stop offset="0" stop-color="#c3cdff"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#t)"/>
+  <g transform="translate(10 10) scale(1.8333)">
+    <path d="M9.88 3.36 L14.94 3.36 L23.00 16.32 L17.95 16.32 Z" fill="#9fb2ff"/>
+    <path d="M1.00 20.64 L6.54 20.64 L14.94 3.36 L9.39 3.36 Z" fill="url(#f)"/>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+{
+  "name": "@zirkumflex/brand",
+  "version": "0.1.0",
+  "description": "Zirkumflex logo, colours and design tokens, taken from Flexspeak.",
+  "type": "module",
+  "private": true,
+  "files": [
+    "tokens.json",
+    "tokens.css",
+    "shadcn.css",
+    "logo"
+  ],
+  "exports": {
+    "./tokens.css": "./tokens.css",
+    "./shadcn.css": "./shadcn.css",
+    "./tokens.json": "./tokens.json",
+    "./logo/*": "./logo/*"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check && node scripts/check-flexspeak.mjs"
+  }
+}

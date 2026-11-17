@@ -1,0 +1,141 @@
+/* Generated from tokens.json by scripts/build.mjs. Don't edit by hand. */
+
+/* Dark is the default. Pick a palette with class="dark" / class="light", or
+   data-theme="dark" | "light" | "system" on <html>. */
+:root {
+  --zx-font-sans: Inter, "Inter Variable", "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --zx-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
+  --zx-logo-badge-top: #4f4fc4;
+  --zx-logo-badge-mid: #2a2585;
+  --zx-logo-badge-deep: #16124a;
+  --zx-logo-ribbon-front: #c3cdff;
+  --zx-logo-ribbon-back: #9fb2ff;
+  --zx-logo-ribbon-shade: #6575f0;
+  --zx-radius-pane: 12px;
+  --zx-radius-card: 10px;
+  --zx-radius-control: 6px;
+  --zx-radius-row: 6px;
+  --zx-radius-pill: 999px;
+  --zx-size-control: 28px;
+  --zx-size-gap: 8px;
+  --zx-size-page: 24px;
+  --zx-size-card-pad: 14px;
+  --zx-size-header: 40px;
+  --zx-size-sidebar: 260px;
+  --zx-text-display: 22px;
+  --zx-weight-display: 650;
+  --zx-tracking-display: -0.3px;
+  --zx-text-title: 17px;
+  --zx-weight-title: 620;
+  --zx-tracking-title: -0.2px;
+  --zx-text-subtitle: 14px;
+  --zx-weight-subtitle: 620;
+  --zx-tracking-subtitle: -0.1px;
+  --zx-text-heading: 13px;
+  --zx-weight-heading: 600;
+  --zx-text-body: 13px;
+  --zx-weight-body: 400;
+  --zx-text-body-strong: 13px;
+  --zx-weight-body-strong: 560;
+  --zx-text-small: 11.5px;
+  --zx-weight-small: 400;
+  --zx-text-caption: 11px;
+  --zx-weight-caption: 400;
+  --zx-text-overline: 11px;
+  --zx-weight-overline: 600;
+  --zx-text-big-value: 20px;
+  --zx-weight-big-value: 600;
+  --zx-text-numeric: 11.5px;
+  --zx-weight-numeric: 500;
+  --zx-motion-quick: 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --zx-motion-settle: 380ms cubic-bezier(0.34, 1.2, 0.64, 1);
+  --zx-motion-reading: 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+:root,
+.dark,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --zx-canvas: #14161c;
+  --zx-stage: #0f1116;
+  --zx-screen: #0f1116;
+  --zx-chrome: #1f222a;
+  --zx-surface: #282b34;
+  --zx-raised: #363a45;
+  --zx-text: #ecedf2;
+  --zx-muted: #a6a9b7;
+  --zx-faint: #7b7f8e;
+  --zx-accent: #8ea8ff;
+  --zx-on-accent: #0b0f1c;
+  --zx-hairline: rgb(255 255 255 / 0.11);
+  --zx-recess: rgb(0 0 0 / 0.18);
+  --zx-ink: #ffffff;
+  --zx-good: #6fdc9a;
+  --zx-fair: #f2c46b;
+  --zx-poor: #ff6b63;
+  --zx-unknown: #8c95ab;
+  --zx-live: #ff6b63;
+  --zx-private: #d2a8ff;
+  --zx-cpu: #46cfe0;
+  --zx-ram: #a98ff8;
+}
+
+.light,
+[data-theme="light"] {
+  color-scheme: light;
+  --zx-canvas: #f3f4f6;
+  --zx-stage: #eceef1;
+  --zx-screen: #1b1c20;
+  --zx-chrome: #eceef1;
+  --zx-surface: #ffffff;
+  --zx-raised: #f1f2f5;
+  --zx-text: #1c1d21;
+  --zx-muted: #5d5f68;
+  --zx-faint: #81838e;
+  --zx-accent: #264adc;
+  --zx-on-accent: #ffffff;
+  --zx-hairline: rgb(0 0 0 / 0.09);
+  --zx-recess: rgb(0 0 0 / 0.035);
+  --zx-ink: #000000;
+  --zx-good: #1c9354;
+  --zx-fair: #b2750f;
+  --zx-poor: #d8413c;
+  --zx-unknown: #6b7385;
+  --zx-live: #d8413c;
+  --zx-private: #8a3fd1;
+  --zx-cpu: #0d8fa1;
+  --zx-ram: #7655dd;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="system"] {
+    color-scheme: light;
+    --zx-canvas: #f3f4f6;
+    --zx-stage: #eceef1;
+    --zx-screen: #1b1c20;
+    --zx-chrome: #eceef1;
+    --zx-surface: #ffffff;
+    --zx-raised: #f1f2f5;
+    --zx-text: #1c1d21;
+    --zx-muted: #5d5f68;
+    --zx-faint: #81838e;
+    --zx-accent: #264adc;
+    --zx-on-accent: #ffffff;
+    --zx-hairline: rgb(0 0 0 / 0.09);
+    --zx-recess: rgb(0 0 0 / 0.035);
+    --zx-ink: #000000;
+    --zx-good: #1c9354;
+    --zx-fair: #b2750f;
+    --zx-poor: #d8413c;
+    --zx-unknown: #6b7385;
+    --zx-live: #d8413c;
+    --zx-private: #8a3fd1;
+    --zx-cpu: #0d8fa1;
+    --zx-ram: #7655dd;
+  }
+}
+
+/* Numbers that change in place line up. */
+.zx-tabular {
+  font-variant-numeric: tabular-nums;
+}

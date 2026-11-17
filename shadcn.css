@@ -1,0 +1,45 @@
+/* Generated from tokens.json by scripts/build.mjs. Don't edit by hand. */
+
+/* Import after tokens.css in a shadcn/ui or Tailwind app. */
+:root,
+.dark,
+.light,
+[data-theme] {
+  --background: var(--zx-canvas);
+  --foreground: var(--zx-text);
+  --card: var(--zx-surface);
+  --card-foreground: var(--zx-text);
+  --popover: var(--zx-surface);
+  --popover-foreground: var(--zx-text);
+  --primary: var(--zx-accent);
+  --primary-foreground: var(--zx-on-accent);
+  --secondary: var(--zx-raised);
+  --secondary-foreground: var(--zx-text);
+  --muted: var(--zx-chrome);
+  --muted-foreground: var(--zx-muted);
+  --accent: var(--zx-raised);
+  --accent-foreground: var(--zx-text);
+  --destructive: var(--zx-poor);
+  --destructive-foreground: var(--zx-on-accent);
+  --success: var(--zx-good);
+  --warning: var(--zx-fair);
+  --border: var(--zx-hairline);
+  --input: var(--zx-hairline);
+  --ring: var(--zx-accent);
+  --radius: var(--zx-radius-card);
+  --sidebar: var(--zx-chrome);
+  --sidebar-foreground: var(--zx-text);
+  --sidebar-primary: var(--zx-accent);
+  --sidebar-primary-foreground: var(--zx-on-accent);
+  --sidebar-accent: var(--zx-raised);
+  --sidebar-accent-foreground: var(--zx-text);
+  --sidebar-border: var(--zx-hairline);
+  --sidebar-ring: var(--zx-accent);
+  --chart-1: var(--zx-accent);
+  --chart-2: var(--zx-cpu);
+  --chart-3: var(--zx-ram);
+  --chart-4: var(--zx-good);
+  --chart-5: var(--zx-fair);
+  --font-sans: var(--zx-font-sans);
+  --font-mono: var(--zx-font-mono);
+}
